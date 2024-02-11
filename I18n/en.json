@@ -154,8 +154,7 @@
             "description": {
                 "None": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
                 "A": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
-                "B": "Gain 1 <c=status>shield</c>. Put a card in <c=keyword>hand</c> <c=trash>(draw pile)</c> on top of your draw pile.",
-                "Balt": "Gain 1 <c=status>shield</c>. Put a card in the <c=keyword>draw pile</c> <c=trash>(hand)</c> on top of your draw pile."
+                "B": "Gain 1 <c=status>shield</c>. Put a card in your <c=keyword>draw pile</c> on top of it."
             }
         },
         "IllegalMods": {

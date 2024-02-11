@@ -1,0 +1,202 @@
+{
+    "character": {
+        "name": "Bucket",
+        "description": [
+            "<c=7D86C2>BUCKET</c>",
+            "An inventor. Her cards generate a lot of <c=downside>trash</c>, but allow for <c=keyword>more reliable hands</c>."
+        ]
+    },
+    "trait": {
+        "favorite": {
+            "name": "My favorite",
+            "description": "This card deals +2 damage. While in your deck, <c=downside>all other cards deal -1 damage.</c>"
+        }
+    },
+    "action": {
+        "variableHintTrash": {
+            "description": "X = Trash cards in hand{{Amount}}."
+        },
+        "variableHintRecycle": {
+            "description": "X = Recycle cards in hand{{Amount}}."
+        },
+        "exhaustTrashFromHand": {
+            "name": "     EXHAUST TRASH IN HAND",
+            "description": "Send every <c=trash>trash</c> card in your hand to the exhaust pile."
+        },
+        "discardAndFeedToAttack": {
+            "cardSelectText": {
+                "trash": "Pick a card. Discard it. If it's <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",
+                "nontrash": "Pick a card. Discard it. If it's not <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",
+                "default": "Pick a card. Discard it."
+            }
+        },
+        "makeFavorite": {
+            "name": "make your favorite",
+            "description": "Make a card <c=cardtrait>your favorite</c> forever.",
+            "showCardText": "Made <c=cardtrait>your favorite</c>!"
+        }
+    },
+    "status": {
+        "Salvage": {
+            "name": "Salvage",
+            "description": "Gain {0} <c=status>TEMP SHIELD</c> whenever you draw a <c=trash>trash</c> card."
+        },
+        "SteamCover": {
+            "name": "Steam Cover",
+            "description": "Each turn, add {0} <c=card>Fumes</c> to your draw pile."
+        },
+        "Ingenuity": {
+            "name": "Ingenuity",
+            "description": "Draw {0} extra card(s) at the start of each turn."
+        }
+    },
+    "artifact": {
+        "XRayVision": {
+            "name": "X-RAY VISION",
+            "description": "View the order in which you draw cards from your draw pile."
+        },
+        "Doohicky": {
+            "name": "DOOHICKY",
+            "description": "The first time a <c=trash>trash</c> card is drawn each turn, draw a card."
+        },
+        "Workaround": {
+            "name": "WORKAROUND",
+            "description": "On your first turn, gain 1 <c=status>REDRAW</c> for every 4 cards in your deck."
+        },
+        "Shredder": {
+            "name": "SHREDDER",
+            "description": "Spending a redraw on a card exhausts it. <c=downside>Draw 1 less card each turn.</c>"
+        },
+        "Favoritism": {
+            "name": "FAVORITISM",
+            "description": "Choose a card in your deck that deals damage. It becomes <c=cardtrait>your favorite</c>."
+        },
+        "ReturnToSender": {
+            "name": "RETURN TO SENDER",
+            "description": "Played cards are put into the draw pile rather than the discard pile."
+        }
+    },
+    "card": {
+        "TrickShot": {
+            "name": "Trick Shot"
+        },
+        "Overhaul": {
+            "name": "Overhaul",
+            "description": {
+                "None": "Gain 2 <c=status>shield</c>. Add 2 <c=card>Trash</c> to your <c=keyword>hand</c>.",
+                "A": "Gain 3 <c=status>shield</c>. Add 2 <c=card>Trash</c> to your <c=keyword>hand</c>.",
+                "B": "Gain 2 <c=status>shield</c>. Add a <c=card>Trash</c> to your <c=keyword>hand</c>."
+            }
+        },
+        "ReboundShot": {
+            "name": "Rebound Shot"
+        },
+        "LearningAlgorithm": {
+            "name": "Learning Algorithm"
+        },
+        "CrossWires": {
+            "name": "Cross Wires"
+        },
+        "Tinker": {
+            "name": "Tinker"
+        },
+        "GarbageChute": {
+            "name": "Garbage Chute"
+        },
+        "TriggerHappy": {
+            "name": "Trigger Happy",
+            "description": {
+                "None": "Add a <c=card>Safety Override</c> to your <c=keyword>draw pile</c>.",
+                "A": "Attack for {{Damage}} damage. Add a <c=card>Safety Override</c> to your <c=keyword>draw pile</c>.",
+                "B": "Add 2 <c=card>Safety Overrides</c> to your <c=keyword>draw pile</c>."
+            }
+        },
+        "Eureka": {
+            "name": "Eureka!",
+            "description": {
+                "None": "Gain 3 <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
+                "A": "Gain 4 <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
+                "B": "Gain 3 <c=status>redraw</c>. Add a <c=card>Trash</c> to your <c=keyword>draw pile</c>."
+            }
+        },
+        "OxiFuelCell": {
+            "name": "Oxi Fuel Cell",
+            "description": {
+                "None": "Gain 2 <c=energy>energy</c>. Add an <c=card>Oxygen Leak</c> to your <c=keyword>draw pile</c>.",
+                "A": "Gain 3 <c=energy>energy</c>. Add an <c=card>Oxygen Leak</c> to your <c=keyword>draw pile</c>.",
+                "B": "Gain 2 <c=energy>energy</c>. Add 2 <c=card>Fumes</c> to your <c=keyword>draw pile</c>."
+            }
+        },
+        "GreenEnergy": {
+            "name": "Green Energy"
+        },
+        "FeedbackLoop": {
+            "name": "Feedback Loop"
+        },
+        "FineTune": {
+            "name": "Fine-Tune",
+            "description": {
+                "None": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 1 dmg per non-<c=trash>trash</c> card.",
+                "A": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 2 dmg per non-<c=trash>trash</c> card.",
+                "B": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 1 dmg per <c=trash>trash</c> card."
+            }
+        },
+        "ControlledChaos": {
+            "name": "Controlled Chaos",
+            "description": {
+                "None": "Play the top card of your <c=keyword>draw pile</c> for free.",
+                "A": "Play the top card of your <c=keyword>draw pile</c> for free.",
+                "B": "Choose a card in your <c=keyword>draw pile</c> to play for free."
+            }
+        },
+        "ContingencyPlan": {
+            "name": "ContingencyPlan",
+            "description": {
+                "None": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
+                "A": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
+                "B": "Gain 1 <c=status>shield</c>. Put a card in <c=keyword>hand</c> <c=trash>(draw pile)</c> on top of your draw pile.",
+                "Balt": "Gain 1 <c=status>shield</c>. Put a card in the <c=keyword>draw pile</c> <c=trash>(hand)</c> on top of your draw pile."
+            }
+        },
+        "IllegalMods": {
+            "name": "Illegal Mods",
+            "description": {
+                "None": "Gain 2 <c=status>autopilot</c>. Add 2 <c=card>Trash</c> to your <c=keyword>draw pile</c>.",
+                "A": "Gain 2 <c=status>autopilot</c>. Add 2 <c=card>Trash</c> to your <c=keyword>draw pile</c>.",
+                "B": "Gain 2 <c=status>autopilot</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>discard pile</c>."
+            }
+        },
+        "AdvancedAI": {
+            "name": "Advanced AI",
+            "description": {
+                "None": "Gain 1 <c=status>autopilot</c>. Add a <c=card>Smart Steering</c> to your <c=keyword>hand</c>.",
+                "A": "Gain 3 <c=status>autopilot</c>. Add a <c=card>Smart Steering</c> to your <c=keyword>hand</c>.",
+                "B": "Gain 1 <c=status>autopilot</c>. Add 2 <c=card>Smart Steerings</c> to your <c=keyword>hand</c>."
+            }
+        },
+        "TrashCannon": {
+            "name": "Trash Cannon"
+        },
+        "Salvage": {
+            "name": "Salvage"
+        },
+        "Ingenuity": {
+            "name": "Ingenuity"
+        },
+        "Vaporizor": {
+            "name": "Vaporizor"
+        },
+        "SmartSteering": {
+            "name": "Smart Steering",
+            "description": {
+                "None": "<c=keyword>When flipped, move to the left of your hand.</c>",
+                "A": "Move right 1 space. <c=keyword>When flipped, move to the left of your hand.</c>",
+                "B": "Gain 1 <c=status>temp shield</c>. <c=keyword>When flipped, move to the left of your hand.</c>"
+            }
+        },
+        "PriceOfProgress": {
+            "name": "Price of Progress",
+            "description": "Add a <c=card>Trash</c> to your <c=keyword>discard pile</c>."
+        }
+    }
+}

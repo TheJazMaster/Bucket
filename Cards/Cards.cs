@@ -62,7 +62,7 @@ internal sealed class OverhaulCard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 1,
+		cost = 0,
 		description = ModEntry.Instance.Localizations.Localize(["card", "Overhaul", "description", upgrade.ToString()]),
 		artTint = "ffffff"
 	};

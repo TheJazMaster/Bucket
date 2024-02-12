@@ -31,7 +31,7 @@ public class AVariableHintRecycle : AVariableHint
             
             parentheses = stringHandler.ToStringAndClear();
         }
-        list.Add(new TTText(ModEntry.Instance.Localizations.Localize(["action", "variableHintTrash", "description"], new { Amount = parentheses })));
+        list.Add(new TTText(ModEntry.Instance.Localizations.Localize(["action", "variableHintRecycle", "description"], new { Amount = parentheses })));
         return list;
 	}
 }

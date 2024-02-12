@@ -955,7 +955,8 @@ internal sealed class VaporizorCard : Card, IBucketCard
 
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AAttack {
-			damage = GetDmg(s, upgrade == Upgrade.A ? 5 : 4)
+			damage = GetDmg(s, upgrade == Upgrade.A ? 5 : 4),
+			piercing = true
 		},
 		new AStatus {
 			status = ModEntry.Instance.SteamCoverStatus.Status,

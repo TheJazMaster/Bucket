@@ -136,9 +136,9 @@
         "FineTune": {
             "name": "Fine-Tune",
             "description": {
-                "None": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 1 dmg per non-<c=trash>trash</c> card.",
-                "A": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 2 dmg per non-<c=trash>trash</c> card.",
-                "B": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal 1 dmg per <c=trash>trash</c> card."
+                "None": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal {{Damage}} dmg per non-<c=trash>trash</c> card.",
+                "A": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal {{Damage}} dmg per non-<c=trash>trash</c> card.",
+                "B": "Discard 3 cards from the <c=keyword>draw pile</c>\nDeal {{Damage}} dmg per <c=trash>trash</c> card."
             }
         },
         "ControlledChaos": {
@@ -183,7 +183,7 @@
             "name": "Ingenuity"
         },
         "Vaporizor": {
-            "name": "Vaporizor"
+            "name": "Vaporizer"
         },
         "SmartSteering": {
             "name": "Smart Steering",

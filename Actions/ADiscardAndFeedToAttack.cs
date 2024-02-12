@@ -22,7 +22,19 @@ public class ADiscardAndFeedToAttack : CardAction
                     });
             }
         }
-	}	
+	}
+
+	public override List<Tooltip> GetTooltips(State s)
+	{
+		return [
+            new CustomTTGlossary(
+                CustomTTGlossary.GlossaryType.action,
+                () => StableSpr.icons_discardCard,
+                () => ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "name"]),
+                () => ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "description"])
+            )
+        ];
+	}
 
 	public override string? GetCardSelectText(State s)
 	{

@@ -3,8 +3,8 @@ A Nickel mod for Cobalt Core with code by me and everything else by **Soggoru Wa
 
 Features a character with a full 21-card deck, 6 artifacts, complete card art and many new mechanics.
 
-![Sprite of the character, their name and frame](https://github.com/TheJazMaster/Bucket/assets/47794482/0b75a635-9d35-4645-9c56-0c929e95d4b9)
-![An inventor. Her cards generate a lot of trash, but allow for more reliable hands.](https://github.com/TheJazMaster/Bucket/assets/47794482/2253f48d-297c-481e-bb90-0167dd84f40d)
+![Sprite of the character, their name and frame](https://github.com/TheJazMaster/Bucket/assets/47794482/1749bfa2-071b-4fc8-904e-274714a5052b)
+![An inventor. Her cards generate a lot of trash, but allow for more reliable hands.](https://github.com/TheJazMaster/Bucket/assets/47794482/168ab6d0-23b6-4aec-b5ac-9c3bb458034f)
 
 **Requires [Kokoro](https://github.com/Shockah/Cobalt-Core-Mods/tree/master/Kokoro)** and **Requires [Philip the Mechanic](https://github.com/FreezeDriedMangos/cc-PhilipTheMechanicMod)**.
 

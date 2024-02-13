@@ -223,11 +223,11 @@ internal sealed class TinkerCard : Card, IBucketCard
 			Upgrade.A => [
 				new AVariableHintTrash(),
 				new ADrawCard {
-					count = 2
-				},
-				new ADrawCard {
 					count = amt,
 					xHint = 1
+				},
+				new ADrawCard {
+					count = 2
 				},
 			],
 			Upgrade.B => [
@@ -991,7 +991,7 @@ internal sealed class SmartSteeringCard : Card, IBucketCard
 		retain = true,
 		recycle = true,
 		temporary = true,
-		description = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", upgrade.ToString()]),
+		description = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", upgrade.ToString()], new { Dir = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", flipped ? "right" : "left"]) }),
 		artTint = "ffffff"
 	};
 
@@ -1006,7 +1006,10 @@ internal sealed class SmartSteeringCard : Card, IBucketCard
 			return;
 
 		combat.hand.Remove(this);
-		combat.hand.Insert(0, this);
+		if (flipped)
+			combat.hand.Insert(combat.hand.Count, this);
+		else
+			combat.hand.Insert(0, this);
 	}
 
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {

@@ -177,7 +177,7 @@ internal sealed class FavoritismArtifact : Artifact, IBucketArtifact
 		if (card == null) return 0;
 
 		List<Card> empty = [];
-		var favorites = state.deck.Concat(combat?.hand ?? empty).Concat(combat?.exhausted ?? empty).Concat(combat?.discard ?? empty).Where(c => FavoriteManager.IsFavorite(c)).ToList();
+		var favorites = state.deck.Concat(combat?.hand ?? empty).Concat(combat?.exhausted ?? empty).Concat(combat?.discard ?? empty).Where(FavoriteManager.IsFavorite).ToList();
 		if (favorites.Count > 0) {
 			if (favorites.Contains(card)) {
 				return 2;

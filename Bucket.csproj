@@ -16,13 +16,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Nickel.ModBuildConfig" Version="0.4.0"/>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="EnumByNameSourceGenerator" Version="1.1.1" PrivateAssets="All" ExcludeAssets="runtime" />
-		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup>
-        <PackageReference Include="Fayti1703.AssemblyTasks" Version="1.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" PrivateAssets="All" ExcludeAssets="All" />
+		<PackageReference Include="EnumByNameSourceGenerator" Version="1.1.1" PrivateAssets="All" ExcludeAssets="All" />
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" PrivateAssets="All" ExcludeAssets="All" />
+        <PackageReference Include="Fayti1703.AssemblyTasks" Version="1.0.0" PrivateAssets="All" ExcludeAssets="runtime" />
     </ItemGroup>
 
     <Target Name="PublicizeGameDll" AfterTargets="ResolveReferences">

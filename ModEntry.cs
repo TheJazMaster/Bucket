@@ -227,6 +227,13 @@ public sealed class ModEntry : SimpleMod {
 			}
 		});
 
+		MoreDifficultiesApi?.RegisterAltStarters(BucketDeck.Deck, new StarterDeck {
+            cards = {
+                new ReboundShotCard(),
+                new LearningAlgorithmCard()
+            }
+        });
+
 		helper.Content.Characters.RegisterCharacterAnimation("GameOver", new()
 		{
 			Deck = BucketDeck.Deck,

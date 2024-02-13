@@ -1007,9 +1007,9 @@ internal sealed class SmartSteeringCard : Card, IBucketCard
 
 		combat.hand.Remove(this);
 		if (flipped)
-			combat.hand.Insert(combat.hand.Count, this);
-		else
 			combat.hand.Insert(0, this);
+		else
+			combat.hand.Insert(combat.hand.Count, this);
 	}
 
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {

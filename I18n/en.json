@@ -191,8 +191,8 @@
                 "None": "<c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "A": "Move right 1 space. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "B": "Gain 1 <c=status>temp shield</c>. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
-                "left": "left",
-                "right": "right"
+                "left": "<c=action>left</c>",
+                "right": "<c=action>right</c>"
             }
         },
         "PriceOfProgress": {

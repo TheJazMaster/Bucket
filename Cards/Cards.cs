@@ -450,6 +450,7 @@ internal sealed class GreenEnergyCard : Card, IBucketCard
 	public override CardData GetData(State state) => new() {
 		cost = upgrade == Upgrade.A ? 0 : 1,
 		exhaust = true,
+		retain = true,
 		artTint = "ffffff"
 	};
 
@@ -508,8 +509,10 @@ internal sealed class FeedbackLoopCard : Card, IBucketCard
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch
 	{
 		Upgrade.B => [
-			new AAttack {
-				damage = GetDmg(s, 1)
+			new AStatus {
+				status = Status.shield,
+				statusAmount = 1,
+				targetPlayer = true
 			},
 			new AStatus {
 				status = Status.tempShield,

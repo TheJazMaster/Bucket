@@ -24,6 +24,9 @@ public class ADiscardAndFeedToAttack : CardAction
         }
 	}
 
+    public string GetSubstring() =>
+        shootOnTrash.HasValue ? (shootOnTrash.Value ? "trash" : "nontrash") : "default";
+
 	public override List<Tooltip> GetTooltips(State s)
 	{
 		return [
@@ -31,13 +34,13 @@ public class ADiscardAndFeedToAttack : CardAction
                 CustomTTGlossary.GlossaryType.action,
                 () => StableSpr.icons_discardCard,
                 () => ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "name"]),
-                () => ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "description"])
+                () => ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "description", GetSubstring()], new { Damage = shootDamageAmount })
             )
         ];
 	}
 
 	public override string? GetCardSelectText(State s)
 	{
-		return ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "cardSelectText", shootOnTrash.HasValue ? (shootOnTrash.Value ? "trash" : "nontrash") : "default"], new { Damage = shootDamageAmount });
+		return ModEntry.Instance.Localizations.Localize(["action", "discardAndFeedToAttack", "cardSelectText", GetSubstring()], new { Damage = shootDamageAmount });
 	}
 }

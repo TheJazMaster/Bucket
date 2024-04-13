@@ -456,7 +456,7 @@ internal sealed class GreenEnergyCard : Card, IBucketCard
 
 	public override List<CardAction> GetActions(State s, Combat c)
 	{
-		var amt = ModEntry.Instance.HandCountManager.CountRecycleInHand(s, c);
+		var amt = (c == DB.fakeCombat) ? s.ship.baseEnergy : ModEntry.Instance.HandCountManager.CountRecycleInHand(s, c);
 		return upgrade switch {
 			Upgrade.B => [
 				new AVariableHintRecycle(),

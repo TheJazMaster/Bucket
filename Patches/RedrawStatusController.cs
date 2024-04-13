@@ -15,43 +15,27 @@ public class RedrawStatusControllerPatches
 	static ModEntry Instance => ModEntry.Instance;
     static Harmony Harmony => Instance.Harmony;
 
-    public static void Apply()
-    {
-        try {
-            var originalMethod = AccessTools.DeclaredMethod(AccessTools.TypeByName("PhilipTheMechanic.RedrawStatusController"), "DiscardFromHand");
-            if (originalMethod is null)
-            {
-                throw new Exception("Could not patch RedrawStatusController.DiscardFromHand");
-            }
-
-            Harmony.Patch(
-                original: originalMethod,
-                prefix: new HarmonyMethod(typeof(RedrawStatusControllerPatches), nameof(RedrawStatusController_DiscardFromHand_Prefix))
-            );
-        } catch (Exception e) {
-            Instance.Logger.LogError(e.StackTrace);
-        }
-    }   
-
-    private static bool RedrawStatusController_DiscardFromHand_Prefix(State s, Card card, bool silent = false)
-    {
-        if (s.route is Combat c) {
-            foreach (Artifact item in s.EnumerateAllArtifacts())
+	internal class ShredderHook : IOnRedrawHook
+	{
+		public void OnRedraw(Card card, State state, Combat combat)
+		{
+            foreach (Artifact item in state.EnumerateAllArtifacts())
             {
                 if (item is ShredderArtifact artifact) {
                     card.ExhaustFX();
-                    c.hand.Remove(card);
-                    c.SendCardToExhaust(s, card);
-                    c.QueueImmediate(new ADelay());
+                    combat.hand.Remove(card);
+                    combat.SendCardToExhaust(state, card);
+                    combat.QueueImmediate(new ADelay());
 
-                    if (!silent)
-                    {
-                        Audio.Play(Event.CardHandling);
-                    }
-                    return false;
+                    Audio.Play(Event.CardHandling);
+                    break;
                 }
             }
-        }
-        return true;
-    }
+		}
+	}
+
+	public static void Apply()
+    {
+        Instance.PhilipApi.RegisterOnRedrawHook(new ShredderHook(), 3);
+    }   
 }

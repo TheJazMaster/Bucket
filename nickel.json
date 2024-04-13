@@ -1,6 +1,6 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "0.1.0",
+    "Version": "1.0.6",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",
@@ -15,8 +15,8 @@
             "IsRequired": false
         },
         {
-            "UniqueName": "clay.PhilipTheEngineer",
-            "Version": "1.0.0",
+            "UniqueName": "clay.PhilipTheMechanic",
+            "Version": "2.0.2",
             "IsRequired": true
         }
     ]

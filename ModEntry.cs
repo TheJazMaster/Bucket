@@ -19,6 +19,7 @@ public sealed class ModEntry : SimpleMod {
     internal static ModEntry Instance { get; private set; } = null;
 
     internal Harmony Harmony { get; }
+	internal IPhilipAPI PhilipApi { get; }
 	internal IKokoroApi KokoroApi { get; }
 	internal IMoreDifficultiesApi MoreDifficultiesApi { get; }
 
@@ -116,8 +117,9 @@ public sealed class ModEntry : SimpleMod {
 		Harmony = new(package.Manifest.UniqueName);
 		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties")!;
 		KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic")!;
 
-		RedrawStatus = helper.Content.Statuses.LookupByUniqueName("clay.PhilipTheEngineer::clay.PhilipTheMechanic.Statuses.Redraw") ?? throw new Exception("Failed to get redraw status");
+		RedrawStatus = PhilipApi.RedrawStatus;
 
 		HandCountManager = new HandCountManager();
 		_ = new StatusManager();

@@ -24,6 +24,12 @@
             "description": "Send every <c=trash>trash</c> card in your hand to the exhaust pile."
         },
         "discardAndFeedToAttack": {
+            "name": "discard and shoot",
+            "description": {
+                "trash": "Pick a card from your <c=keyword>draw pile</c> and discard it. If it's <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",
+                "nontrash": "Pick a card from your <c=keyword>draw pile</c> and discard it. If it's not <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",
+                "default": "Pick a card from your <c=keyword>draw pile</c> and discard it."
+            },
             "cardSelectText": {
                 "trash": "Pick a card. Discard it. If it's <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",
                 "nontrash": "Pick a card. Discard it. If it's not <c=trash>trash</c>, shoot for <c=keyword>{{Damage}}</c> damage.",

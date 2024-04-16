@@ -513,12 +513,7 @@ internal sealed class FeedbackLoopCard : Card, IBucketCard
 				status = Status.shield,
 				statusAmount = 1,
 				targetPlayer = true
-			},
-			new AStatus {
-				status = Status.tempShield,
-				statusAmount = 1,
-				targetPlayer = true
-			},
+			}
 		],
 		_ => [
 			new AStatus {
@@ -747,7 +742,7 @@ internal sealed class AdvancedAICard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 3,
+		cost = 2,
 		exhaust = true,
 		description = ModEntry.Instance.Localizations.Localize(["card", "AdvancedAI", "description", upgrade.ToString()]),
 		artTint = "ffffff"

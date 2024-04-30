@@ -69,6 +69,10 @@
             "name": "WORKAROUND",
             "description": "On your first turn, gain 1 <c=status>REDRAW</c> for every 4 cards in your deck."
         },
+        "RecyclingBin": {
+            "name": "RECYCLING BIN",
+            "description": "Each turn, draw +1 cards if a <c=cardtrait>recycle</c> card was played the previous turn."
+        },
         "Shredder": {
             "name": "SHREDDER",
             "description": "Spending a redraw on a card exhausts it. <c=downside>Draw 1 less card each turn.</c>"
@@ -80,6 +84,48 @@
         "ReturnToSender": {
             "name": "RETURN TO SENDER",
             "description": "Played cards are put into the draw pile rather than the discard pile."
+        }
+    },
+    "duoArtifact": {
+        "JuryRigging": {
+            "name": "JURY-RIGGING",
+            "description": "Whenever a <c=trash>trash</c> card is exhausted, gain a <c=card>Chip Shot</c>."
+        },
+        "CerebralShield": {
+            "name": "CEREBRAL SHIELD",
+            "description": "At the end of each turn, gain 1 <c=status>SHIELD</c> for each 3 <c=status>REDRAW</c>."
+        },
+        "Ruminating": {
+            "name": "RUMINATING",
+            "description": "Card draw on all actions is replaced by an equal amount of <c=status>REDRAW</c> gain."
+        },
+        "AirlockEjector": {
+            "name": "AIRLOCK EJECTOR",
+            "description": "Whenever a <c=trash>trash</c> card is played, launch an <c=drone>asteroid</c> from the missile bay."
+        },
+        "WizbosCurse": {
+            "name": "WIZBO'S CURSE",
+            "description": "For each <c=status>HEAT</c> a non-<c=trash>trash</c> card would apply to you, add a <c=card>Miasma</c> into your hand instead."
+        },
+        "ProcessorChip": {
+            "name": "PROCESSOR CHIP",
+            "description": "At the start of combat, gain an <c=cardtrait>exhausting</c> <c=card>Smart Steering</c>."
+        },
+        "DiamondInTheRough": {
+            "name": "DIAMOND IN THE ROUGH",
+            "description": "At the end of each turn, gain 1 <c=status>SHARD</c> for each <c=trash>trash</c> card in your hand."
+        },
+        "ScavengerSight": {
+            "name": "SCAVENGER-SIGHT",
+            "description": "Draw <c=card>+1 card</c> every turn. <c=downside>Basic shot, basic dodge, basic block, and non-temp <c=trash>trash</c> cards can appear in combat rewards."
+        },
+        "ModusOperandi": {
+            "name": "MODUS OPERANDI",
+            "description": "Choose 5 cards in your deck. They become <c=cardtrait>buoyant</c>."
+        },
+        "LittleHelpers": {
+            "name": "LITTLE HELPERS",
+            "description": "At the start of combat, shuffle a <c=card>Nanobots</c> into your deck. Whenever you draw <c=card>Nanobots</c>, gain 1 <c=status>SHIELD</c> and 1 <c=status>TEMP SHIELD</c>."
         }
     },
     "card": {
@@ -156,7 +202,7 @@
             }
         },
         "ContingencyPlan": {
-            "name": "ContingencyPlan",
+            "name": "Contingency Plan",
             "description": {
                 "None": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
                 "A": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",

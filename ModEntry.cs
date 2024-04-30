@@ -1,27 +1,29 @@
-﻿// Total time spent: 400 min
-
-using FMOD;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Microsoft.Extensions.Logging;
 using Nanoray.PluginManager;
 using Nickel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TheJazMaster.Bucket.Artifacts;
 using TheJazMaster.Bucket.Cards;
 using TheJazMaster.Bucket.Features;
 using TheJazMaster.Bucket.Patches;
 
+#nullable enable
 namespace TheJazMaster.Bucket;
 
 public sealed class ModEntry : SimpleMod {
-    internal static ModEntry Instance { get; private set; } = null;
+    internal static ModEntry Instance { get; private set; } = null!;
 
     internal Harmony Harmony { get; }
 	internal IPhilipAPI PhilipApi { get; }
+	internal ITyAndSashaApi TyApi { get; }
 	internal IKokoroApi KokoroApi { get; }
-	internal IMoreDifficultiesApi MoreDifficultiesApi { get; }
+	internal IMoreDifficultiesApi MoreDifficultiesApi { get; } = null!;
+
+    internal IDuoArtifactsApi? DuoArtifactsApi { get; private set; } = null!;
 
 	internal HandCountManager HandCountManager { get; }
 
@@ -42,6 +44,10 @@ public sealed class ModEntry : SimpleMod {
     internal ISpriteEntry BucketPortraitMini { get; }
     internal ISpriteEntry BucketFrame { get; }
     internal ISpriteEntry BucketCardBorder { get; }
+
+	internal List<ISpriteEntry> NeutralFrames { get; } = [];
+	internal List<ISpriteEntry> SquintFrames { get; } = [];
+	internal List<ISpriteEntry> GameoverFrames { get; } = [];
 
     internal ISpriteEntry ExhaustTrashFromHandIcon { get; }
 	internal ISpriteEntry TrashHandIcon { get; }
@@ -99,6 +105,7 @@ public sealed class ModEntry : SimpleMod {
 		typeof(XRayVisionArtifact),
 		typeof(DoohickyArtifact),
 		typeof(WorkaroundArtifact),
+		typeof(RecyclingBinArtifact)
 	];
 
 	internal static IReadOnlyList<Type> BossArtifacts { get; } = [
@@ -107,8 +114,21 @@ public sealed class ModEntry : SimpleMod {
 		typeof(ShredderArtifact),
 	];
 
+	internal static IReadOnlyList<Type> DuoArtifacts { get; } = [
+		typeof(JuryRigging),
+		typeof(CerebralShield),
+		typeof(Ruminating),
+		typeof(AirlockEjector),
+		typeof(WizbosCurse),
+		typeof(ProcessorChip),
+		typeof(DiamondInTheRough),
+		typeof(ScavengerSight),
+		typeof(LittleHelpers),
+		typeof(ModusOperandi),
+	];
+
 	internal static IEnumerable<Type> AllArtifactTypes
-		=> CommonArtifacts.Concat(BossArtifacts);
+		=> CommonArtifacts.Concat(BossArtifacts).Concat(DuoArtifacts);
 
     
     public ModEntry(IPluginPackage<IModManifest> package, IModHelper helper, ILogger logger) : base(package, helper, logger)
@@ -116,17 +136,23 @@ public sealed class ModEntry : SimpleMod {
 		Instance = this;
 		Harmony = new(package.Manifest.UniqueName);
 		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties")!;
+		DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts");
 		KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
 		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic")!;
+		TyApi = helper.ModRegistry.GetApi<ITyAndSashaApi>("TheJazMaster.TyAndSasha")!;
 
 		RedrawStatus = PhilipApi.RedrawStatus;
 
 		HandCountManager = new HandCountManager();
 		_ = new StatusManager();
 		_ = new FavoriteManager();
+		CardPatches.Apply();
 		CardBrowsePatches.Apply();
 		CombatPatches.Apply();
+		CardRewardPatches.Apply();
 		RedrawStatusControllerPatches.Apply();
+		AStatusPatches.Apply();
+		AEndTurnPatches.Apply();
 		CustomTTGlossary.ApplyPatches(Harmony);
 		DynamicWidthCardAction.ApplyPatches(Harmony);
 
@@ -138,8 +164,11 @@ public sealed class ModEntry : SimpleMod {
 			new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(AnyLocalizations)
 		);
 
+		NeutralFrames = RegisterTalkSprites("Neutral");
+		SquintFrames = RegisterTalkSprites("Squint");
+		GameoverFrames = RegisterTalkSprites("Gameover");
 
-        BucketPortrait = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/Bucket_neutral_0.png"));
+        BucketPortrait = NeutralFrames[0];
         BucketPortraitMini = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/Bucket_mini.png"));
 		BucketFrame = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/Panel.png"));
         BucketCardBorder = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/CardBorder.png"));
@@ -215,9 +244,7 @@ public sealed class ModEntry : SimpleMod {
 			{
 				Deck = BucketDeck.Deck,
 				LoopTag = "neutral",
-				Frames = [
-					BucketPortrait.Sprite
-				]
+				Frames = NeutralFrames.Select(entry => entry.Sprite).ToList()
 			},
 			MiniAnimation = new()
 			{
@@ -240,13 +267,28 @@ public sealed class ModEntry : SimpleMod {
 		{
 			Deck = BucketDeck.Deck,
 			LoopTag = "gameover",
-			Frames = [BucketPortrait.Sprite]
+			Frames = GameoverFrames.Select(entry => entry.Sprite).ToList()
 		});
 		helper.Content.Characters.RegisterCharacterAnimation("Squint", new()
 		{
 			Deck = BucketDeck.Deck,
 			LoopTag = "squint",
-			Frames = [BucketPortrait.Sprite]
+			Frames = SquintFrames.Select(entry => entry.Sprite).ToList()
 		});
+    }
+
+	public override object? GetApi(IModManifest requestingMod)
+		=> new ApiImplementation();
+
+	private static List<ISpriteEntry> RegisterTalkSprites(string fileSuffix)
+    {
+        var files = Instance.Package.PackageRoot.GetRelative($"Sprites/Character/{fileSuffix}").AsDirectory?.GetFilesRecursively();
+		List<ISpriteEntry> sprites = [];
+		if (files != null) {
+			foreach (IFileInfo file in files) {
+				sprites.Add(Instance.Helper.Content.Sprites.RegisterSprite(file));
+			}
+		}
+		return sprites;
     }
 }

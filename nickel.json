@@ -1,6 +1,6 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "1.0.6",
+    "Version": "1.1.0",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",
@@ -12,6 +12,14 @@
         {
             "UniqueName": "TheJazMaster.MoreDifficulties",
             "Version": "1.3.0",
+            "IsRequired": false
+        },
+        {
+            "UniqueName": "TheJazMaster.TyAndSasha",
+            "IsRequired": false
+        },
+        {
+            "UniqueName": "Shockah.DuoArtifacts",
             "IsRequired": false
         },
         {

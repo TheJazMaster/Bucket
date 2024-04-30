@@ -123,6 +123,55 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 }
 
 
+internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
+{
+	bool active = false;
+
+	public static void Register(IModHelper helper)
+	{
+		helper.Content.Artifacts.RegisterArtifact("RecyclingBin", new()
+		{
+			ArtifactType = MethodBase.GetCurrentMethod()!.DeclaringType!,
+			Meta = new()
+			{
+				owner = ModEntry.Instance.BucketDeck.Deck,
+				pools = [ArtifactPool.Common]
+			},
+			Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Artifacts/RecyclingBin.png")).Sprite,
+			Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "RecyclingBin", "name"]).Localize,
+			Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "RecyclingBin", "description"]).Localize
+		});
+	}
+
+	public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount)
+	{
+		if (!active && card.GetDataWithOverrides(state).recycle) {
+			active = true;
+			Pulse();
+		}
+	}
+
+	public override void OnTurnStart(State state, Combat combat)
+	{
+		if (active) {
+			combat.Queue(new ADrawCard {
+				count = 1
+			});
+		}
+		active = false;
+	}
+
+	public override void OnCombatEnd(State state)
+	{
+		active = false;
+	}
+
+	public override List<Tooltip>? GetExtraTooltips() => [
+		new TTGlossary("cardtrait.recycle")
+	];
+}
+
+
 internal sealed class ReturnToSenderArtifact : Artifact, IBucketArtifact
 {
 	public static void Register(IModHelper helper)

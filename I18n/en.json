@@ -71,7 +71,7 @@
         },
         "RecyclingBin": {
             "name": "RECYCLING BIN",
-            "description": "Each turn, draw +1 cards if a <c=cardtrait>recycle</c> card was played the previous turn."
+            "description": "Once per turn, draw +1 cards next turn when a <c=cardtrait>recycle</c> card is played."
         },
         "Shredder": {
             "name": "SHREDDER",
@@ -240,7 +240,7 @@
         "SmartSteering": {
             "name": "Smart Steering",
             "description": {
-                "None": "<c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
+                "None": "<c=keyword>When flipped, move to the {{Dir}} of\nyour hand.</c>",
                 "A": "Move right 1 space. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "B": "Gain 1 <c=status>temp shield</c>. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "left": "<c=action>left</c>",

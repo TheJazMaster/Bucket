@@ -30,7 +30,7 @@ public class CardRewardPatches
                 double chance = 1.0 / (s.characters.Count + 1);
                 for (int i = 0; i < __result.Count; i++) {
                     if (s.rngCardOfferings.Next() < chance) {
-                        List<Card> list = DB.releasedCards.Where(delegate(Card c)
+                        List<Card> list = (s.rngCardOfferings.Next() < 0.5) ? DB.releasedCards.Where(delegate(Card c)
                         {
                             CardMeta meta = c.GetMeta();
                             if (meta.deck != Deck.trash)
@@ -42,13 +42,14 @@ public class CardRewardPatches
                                 return false;
                             }
                             return true;
-                        }).Concat(basicCards).ToList();
+                        }).ToList() : basicCards;
                         Card card = (Card)Activator.CreateInstance(list.Random(s.rngCardOfferings).GetType());
                         if (makeAllCardsTemporary) card.temporaryOverride = true;
                         if (discount > 0) card.discount = discount;
                         card.upgrade = CardReward.GetUpgrade(s.rngCardOfferings, s.map, card, (s.GetDifficulty() >= 1) ? 0.5 : 1.0, overrideUpgradeChances);
                         card.flipAnim = 1.0;
                         card.drawAnim = 1.0;
+                        card.temporaryOverride = false;
                         __result[i] = card;
                     }
                 }

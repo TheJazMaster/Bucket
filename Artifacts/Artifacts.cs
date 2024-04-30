@@ -126,9 +126,13 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
 {
 	bool active = false;
+	internal static Spr ActiveSprite;
+	internal static Spr InactiveSprite;
 
 	public static void Register(IModHelper helper)
 	{
+		ActiveSprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Artifacts/RecyclingBin.png")).Sprite;
+		InactiveSprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Artifacts/RecyclingBinInactive.png")).Sprite;
 		helper.Content.Artifacts.RegisterArtifact("RecyclingBin", new()
 		{
 			ArtifactType = MethodBase.GetCurrentMethod()!.DeclaringType!,
@@ -137,36 +141,42 @@ internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
 				owner = ModEntry.Instance.BucketDeck.Deck,
 				pools = [ArtifactPool.Common]
 			},
-			Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Artifacts/RecyclingBin.png")).Sprite,
+			Sprite = ActiveSprite,
 			Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "RecyclingBin", "name"]).Localize,
 			Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "RecyclingBin", "description"]).Localize
 		});
 	}
 
+	public override Spr GetSprite()
+	{
+		return active ? ActiveSprite : InactiveSprite;
+	}
+
 	public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount)
 	{
 		if (!active && card.GetDataWithOverrides(state).recycle) {
-			active = true;
+			active = false;
+			combat.Queue(new AStatus {
+				status = Status.drawNextTurn,
+				statusAmount = 1,
+				targetPlayer = true
+			});
 			Pulse();
 		}
 	}
 
 	public override void OnTurnStart(State state, Combat combat)
 	{
-		if (active) {
-			combat.Queue(new ADrawCard {
-				count = 1
-			});
-		}
-		active = false;
+		active = true;
 	}
 
 	public override void OnCombatEnd(State state)
 	{
-		active = false;
+		active = true;
 	}
 
 	public override List<Tooltip>? GetExtraTooltips() => [
+		.. StatusMeta.GetTooltips(Status.drawNextTurn, 1),
 		new TTGlossary("cardtrait.recycle")
 	];
 }

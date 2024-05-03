@@ -71,13 +71,13 @@ internal sealed class OverhaulCard : Card, IBucketCard
 		new AStatus
 		{
 			status = Status.shield,
-			statusAmount = upgrade == Upgrade.A ? 3 : 2,
+			statusAmount = upgrade == Upgrade.B ? 3 : 2,
 			targetPlayer = true
 		},
 		new AAddCard
 		{
 			card = new ColorlessTrash(),
-			amount = upgrade == Upgrade.B ? 1 : 2,
+			amount = upgrade == Upgrade.A ? 1 : 2,
 			destination = CardDestination.Hand
 		}
 	];
@@ -953,7 +953,7 @@ internal sealed class VaporizorCard : Card, IBucketCard
 
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AAttack {
-			damage = GetDmg(s, upgrade == Upgrade.A ? 5 : 4),
+			damage = GetDmg(s, upgrade == Upgrade.A ? 6 : 4),
 			piercing = true
 		},
 		new AStatus {

@@ -13,6 +13,7 @@ namespace TheJazMaster.Bucket.Artifacts;
 
 internal sealed class JuryRigging : Artifact, IBucketArtifact, IOnExhaustArtifact
 {
+	int counter = 0;
 	public static void Register(IModHelper helper)
 	{
 		if (ModEntry.Instance.DuoArtifactsApi == null) return;
@@ -33,13 +34,22 @@ internal sealed class JuryRigging : Artifact, IBucketArtifact, IOnExhaustArtifac
 
 	public void OnExhaustCard(State s, Combat c, Card card) {
 		if (card.GetMeta().deck == Deck.trash) {
-			c.Queue(new AAddCard {
-				card = new ChipShot(),
-				amount = 1,
-				destination = CardDestination.Hand
-			});
+			counter += 1;
+			if (counter >= 2) {
+				c.Queue(new AAddCard {
+					card = new ChipShot(),
+					amount = 1,
+					destination = CardDestination.Hand
+				});
+				counter -= 2;
 			Pulse();
+			}
 		}
+	}
+
+	public override int? GetDisplayNumber(State s)
+	{
+		return counter;
 	}
 
 	public override List<Tooltip>? GetExtraTooltips() => [
@@ -70,7 +80,7 @@ internal sealed class CerebralShield : Artifact, IBucketArtifact
 		ModEntry.Instance.DuoArtifactsApi.RegisterDuoArtifact<CerebralShield>([Deck.dizzy, ModEntry.Instance.BucketDeck.Deck]);
 	}
 
-	public override void OnTurnEnd(State state, Combat combat)
+	public override void OnTurnStart(State state, Combat combat)
 	{
 		int redrawAmount = state.ship.Get(ModEntry.Instance.RedrawStatus.Status);
 		if (redrawAmount / 3 > 0) {
@@ -317,14 +327,19 @@ internal sealed class ScavengerSight : Artifact, IBucketArtifact
 		ModEntry.Instance.DuoArtifactsApi.RegisterDuoArtifact<ScavengerSight>([Deck.catartifact, ModEntry.Instance.BucketDeck.Deck]);
 	}
 
-	public override void OnReceiveArtifact(State state)
+	public override void OnTurnStart(State state, Combat combat)
 	{
-		state.ship.baseDraw += 1;
-	}
-
-	public override void OnRemoveArtifact(State state)
-	{
-		state.ship.baseDraw -= 1;
+		int amount = state.deck.Where(card => card.GetMeta().deck == Deck.trash).Count();
+		combat.Queue(new AStatus {
+			status = Status.evade,
+			statusAmount = amount,
+			targetPlayer = true
+		});
+		combat.Queue(new AStatus {
+			status = Status.shield,
+			statusAmount = amount,
+			targetPlayer = true
+		});
 	}
 }
 
@@ -351,7 +366,7 @@ internal sealed class ModusOperandi : Artifact, IBucketArtifact
 
 	public override void OnReceiveArtifact(State state)
 	{
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 2; i++) {
 			state.GetCurrentQueue().QueueImmediate(
 				new ACardSelect
 				{

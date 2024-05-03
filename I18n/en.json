@@ -71,7 +71,7 @@
         },
         "RecyclingBin": {
             "name": "RECYCLING BIN",
-            "description": "Once per turn, draw +1 cards next turn when a <c=cardtrait>recycle</c> card is played."
+            "description": "Once per turn, draw <c=card>+1 card</c> next turn when a <c=cardtrait>recycle</c> card is played."
         },
         "Shredder": {
             "name": "SHREDDER",
@@ -89,7 +89,7 @@
     "duoArtifact": {
         "JuryRigging": {
             "name": "JURY-RIGGING",
-            "description": "Whenever a <c=trash>trash</c> card is exhausted, gain a <c=card>Chip Shot</c>."
+            "description": "Whenever two <c=trash>trash</c> cards are exhausted, gain a <c=card>Chip Shot</c>."
         },
         "CerebralShield": {
             "name": "CEREBRAL SHIELD",
@@ -117,11 +117,11 @@
         },
         "ScavengerSight": {
             "name": "SCAVENGER-SIGHT",
-            "description": "Draw <c=card>+1 card</c> every turn. <c=downside>Basic shot, basic dodge, basic block, and non-temp <c=trash>trash</c> cards can appear in combat rewards."
+            "description": "Gain 1 <c=status>EVADE</c> and 1 <c=status>SHIELD</c> on the first turn for each <c=trash>trash</c> card in your deck. <c=downside>Basic shot, basic dodge, basic block, and non-temp <c=trash>trash</c> cards can appear in combat rewards.</c>"
         },
         "ModusOperandi": {
             "name": "MODUS OPERANDI",
-            "description": "Choose 5 cards in your deck. They become <c=cardtrait>buoyant</c>."
+            "description": "On pickup, choose 2 cards that are not <c=cardtrait>buoyant</c> in your deck. They gain <c=cardtrait>buoyant</c>."
         },
         "LittleHelpers": {
             "name": "LITTLE HELPERS",
@@ -136,8 +136,8 @@
             "name": "Overhaul",
             "description": {
                 "None": "Gain 2 <c=status>shield</c>. Add 2 <c=card>Trash</c> to your <c=keyword>hand</c>.",
-                "A": "Gain 3 <c=status>shield</c>. Add 2 <c=card>Trash</c> to your <c=keyword>hand</c>.",
-                "B": "Gain 2 <c=status>shield</c>. Add a <c=card>Trash</c> to your <c=keyword>hand</c>."
+                "A": "Gain 2 <c=status>shield</c>. Add a <c=card>Trash</c> to your <c=keyword>hand</c>.",
+                "B": "Gain 3 <c=status>shield</c>. Add 2 <c=card>Trash</c> to your <c=keyword>hand</c>."
             }
         },
         "ReboundShot": {

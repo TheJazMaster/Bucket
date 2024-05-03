@@ -125,7 +125,7 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 
 internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
 {
-	bool active = false;
+	bool active = true;
 	internal static Spr ActiveSprite;
 	internal static Spr InactiveSprite;
 

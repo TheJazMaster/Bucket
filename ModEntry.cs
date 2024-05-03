@@ -19,9 +19,9 @@ public sealed class ModEntry : SimpleMod {
 
     internal Harmony Harmony { get; }
 	internal IPhilipAPI PhilipApi { get; }
-	internal ITyAndSashaApi TyApi { get; }
+	internal ITyAndSashaApi? TyApi { get; }
 	internal IKokoroApi KokoroApi { get; }
-	internal IMoreDifficultiesApi MoreDifficultiesApi { get; } = null!;
+	internal IMoreDifficultiesApi? MoreDifficultiesApi { get; } = null!;
 
     internal IDuoArtifactsApi? DuoArtifactsApi { get; private set; } = null!;
 
@@ -135,11 +135,11 @@ public sealed class ModEntry : SimpleMod {
 	{
 		Instance = this;
 		Harmony = new(package.Manifest.UniqueName);
-		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties")!;
+		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
 		DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts");
 		KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
 		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic")!;
-		TyApi = helper.ModRegistry.GetApi<ITyAndSashaApi>("TheJazMaster.TyAndSasha")!;
+		TyApi = helper.ModRegistry.GetApi<ITyAndSashaApi>("TheJazMaster.TyAndSasha");
 
 		RedrawStatus = PhilipApi.RedrawStatus;
 

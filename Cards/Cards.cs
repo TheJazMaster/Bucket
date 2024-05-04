@@ -36,7 +36,7 @@ internal sealed class TrickShotCard : Card, IBucketCard
 		},
 		new AStatus
 		{
-			status = ModEntry.Instance.RedrawStatus.Status,
+			status = ModEntry.Instance.RedrawStatus,
 			statusAmount = upgrade == Upgrade.B ? 2 : 1,
 			targetPlayer = true
 		}
@@ -145,7 +145,7 @@ internal sealed class LearningAlgorithmCard : Card, IBucketCard
 			targetPlayer = true
 		},
 		new AStatus {
-			status = ModEntry.Instance.RedrawStatus.Status,
+			status = ModEntry.Instance.RedrawStatus,
 			statusAmount = upgrade == Upgrade.None ? 1 : 2,
 			targetPlayer = true
 		},
@@ -233,7 +233,7 @@ internal sealed class TinkerCard : Card, IBucketCard
 			Upgrade.B => [
 				new AVariableHintTrash(),
 				new AStatus {
-					status = ModEntry.Instance.RedrawStatus.Status,
+					status = ModEntry.Instance.RedrawStatus,
 					statusAmount = amt,
 					targetPlayer = true,
 					xHint = 1
@@ -360,7 +360,7 @@ internal sealed class EurekaCard : Card, IBucketCard
 
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AStatus {
-			status = ModEntry.Instance.RedrawStatus.Status,
+			status = ModEntry.Instance.RedrawStatus,
 			statusAmount = upgrade == Upgrade.A ? 4 : 3,
 			targetPlayer = true
 		},
@@ -465,7 +465,7 @@ internal sealed class GreenEnergyCard : Card, IBucketCard
 					xHint = 1
 				},
 				new AStatus {
-					status = ModEntry.Instance.RedrawStatus.Status,
+					status = ModEntry.Instance.RedrawStatus,
 					statusAmount = amt,
 					targetPlayer = true,
 					xHint = 1

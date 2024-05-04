@@ -109,7 +109,7 @@
         },
         "ProcessorChip": {
             "name": "PROCESSOR CHIP",
-            "description": "At the start of combat, gain an <c=cardtrait>exhausting</c> <c=card>Smart Steering</c>."
+            "description": "At the start of combat, gain an <c=cardtrait>exhausting</c> <c=card>Smart Steering A</c>."
         },
         "DiamondInTheRough": {
             "name": "DIAMOND IN THE ROUGH",

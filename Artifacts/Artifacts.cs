@@ -93,13 +93,15 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 
 	public static int GetNumber()
 	{
-		return new CardBrowse{
-			browseSource = CardBrowse.Source.Deck
-		}.GetCardList(MG.inst.g).Count / 4;
+		State s = MG.inst.g.state;
+		Combat? c = (s.route is Combat combat) ? combat : null;
+		if (c == null) return s.deck.Count / 4;
+		return s.deck.Concat(c.hand.Concat(c.exhausted.Concat(c.discard))).Count() / 4;
 	}
 
 	public override int? GetDisplayNumber(State s)
 	{
+		if (s.route is Combat) return null;
 		return GetNumber();
 	}
 	public override void OnTurnStart(State state, Combat combat)
@@ -108,7 +110,7 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 		{
 			combat.QueueImmediate(new AStatus
 			{
-				status = ModEntry.Instance.RedrawStatus.Status,
+				status = ModEntry.Instance.RedrawStatus,
 				statusAmount = GetNumber(),
 				targetPlayer = true,
 				artifactPulse = Key()
@@ -118,7 +120,7 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 
 	public override List<Tooltip>? GetExtraTooltips()
 	{
-		return StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus.Status, 1);
+		return StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus, 1);
 	}
 }
 
@@ -299,6 +301,6 @@ internal sealed class ShredderArtifact : Artifact, IBucketArtifact
 
 	public override List<Tooltip>? GetExtraTooltips()
 	{
-		return StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus.Status, 1);
+		return StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus, 1);
 	}
 }

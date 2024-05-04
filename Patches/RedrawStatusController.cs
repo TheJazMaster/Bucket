@@ -15,9 +15,9 @@ public class RedrawStatusControllerPatches
 	static ModEntry Instance => ModEntry.Instance;
     static Harmony Harmony => Instance.Harmony;
 
-	internal class ShredderHook : IOnRedrawHook
+	internal class ShredderHook : IRedrawStatusHook
 	{
-		public void OnRedraw(Card card, State state, Combat combat)
+		public bool DoRedraw(State state, Combat combat, Card card, IRedrawStatusHook possibilityHook, IRedrawStatusHook paymentHook)
 		{
             foreach (Artifact item in state.EnumerateAllArtifacts())
             {
@@ -28,14 +28,15 @@ public class RedrawStatusControllerPatches
                     combat.QueueImmediate(new ADelay());
 
                     Audio.Play(Event.CardHandling);
-                    break;
+                    return true;
                 }
             }
+            return false;
 		}
 	}
 
 	public static void Apply()
     {
-        Instance.PhilipApi.RegisterOnRedrawHook(new ShredderHook(), 3);
+        Instance.KokoroApi.RegisterRedrawStatusHook(new ShredderHook(), 3);
     }   
 }

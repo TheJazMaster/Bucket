@@ -18,7 +18,7 @@ public sealed class ModEntry : SimpleMod {
     internal static ModEntry Instance { get; private set; } = null!;
 
     internal Harmony Harmony { get; }
-	internal IPhilipAPI PhilipApi { get; }
+	internal IPhilipAPI? PhilipApi { get; }
 	internal ITyAndSashaApi? TyApi { get; }
 	internal IKokoroApi KokoroApi { get; }
 	internal IMoreDifficultiesApi? MoreDifficultiesApi { get; } = null!;
@@ -38,7 +38,7 @@ public sealed class ModEntry : SimpleMod {
 	internal IStatusEntry SalvageStatus { get; }
 	internal IStatusEntry IngenuityStatus { get; }
     internal IStatusEntry SteamCoverStatus { get; }
-	internal IStatusEntry RedrawStatus { get; }
+	internal Status RedrawStatus { get; }
 
     internal ISpriteEntry BucketPortrait { get; }
     internal ISpriteEntry BucketPortraitMini { get; }
@@ -138,10 +138,10 @@ public sealed class ModEntry : SimpleMod {
 		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
 		DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts");
 		KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
-		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic")!;
+		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic");
 		TyApi = helper.ModRegistry.GetApi<ITyAndSashaApi>("TheJazMaster.TyAndSasha");
 
-		RedrawStatus = PhilipApi.RedrawStatus;
+		RedrawStatus = KokoroApi.RedrawVanillaStatus;
 
 		HandCountManager = new HandCountManager();
 		_ = new StatusManager();

@@ -1,13 +1,13 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "1.1.2",
+    "Version": "1.2.0",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",
     "Dependencies": [
         {
             "UniqueName": "Shockah.Kokoro",
-            "Version": "1.2.0"
+            "Version": "1.8.0"
         },
         {
             "UniqueName": "TheJazMaster.MoreDifficulties",
@@ -25,7 +25,7 @@
         {
             "UniqueName": "clay.PhilipTheMechanic",
             "Version": "2.0.2",
-            "IsRequired": true
+            "IsRequired": false
         }
     ]
 }

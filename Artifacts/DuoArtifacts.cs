@@ -39,7 +39,7 @@ internal sealed class JuryRigging : Artifact, IBucketArtifact, IOnExhaustArtifac
 				c.Queue(new AAddCard {
 					card = new ChipShot(),
 					amount = 1,
-					destination = CardDestination.Hand
+					destination = CardDestination.Hand,
 				});
 				counter -= 2;
 			Pulse();
@@ -82,20 +82,20 @@ internal sealed class CerebralShield : Artifact, IBucketArtifact
 
 	public override void OnTurnStart(State state, Combat combat)
 	{
-		int redrawAmount = state.ship.Get(ModEntry.Instance.RedrawStatus.Status);
+		int redrawAmount = state.ship.Get(ModEntry.Instance.RedrawStatus);
 		if (redrawAmount / 3 > 0) {
 			combat.Queue(new AStatus {
 				status = Status.shield,
 				statusAmount = redrawAmount / 3,
-				targetPlayer = true
+				targetPlayer = true,
+				artifactPulse = Key()
 			});
-			Pulse();
 		}
 	}
 
 	public override List<Tooltip>? GetExtraTooltips()
 	{
-		return [.. StatusMeta.GetTooltips(Status.shield, 1), .. StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus.Status, 3)];
+		return [.. StatusMeta.GetTooltips(Status.shield, 1), .. StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus, 3)];
 	}
 }
 
@@ -125,7 +125,7 @@ internal sealed class Ruminating : Artifact, IBucketArtifact, ICardActionAffecto
 			CardAction action = actions[i];
 			if (action is ADrawCard drawAction) {
 				actions[i] = new AStatus {
-					status = ModEntry.Instance.RedrawStatus.Status,
+					status = ModEntry.Instance.RedrawStatus,
 					statusAmount = drawAction.count,
 					targetPlayer = true
 				};
@@ -134,7 +134,7 @@ internal sealed class Ruminating : Artifact, IBucketArtifact, ICardActionAffecto
 	}
 
 	public override List<Tooltip>? GetExtraTooltips() =>
-		StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus.Status, 1);
+		StatusMeta.GetTooltips(ModEntry.Instance.RedrawStatus, 1);
 }
 
 
@@ -163,10 +163,10 @@ internal sealed class AirlockEjector : Artifact, IBucketArtifact
 		if (deck == Deck.trash) {
 			combat.QueueImmediate(new ASpawn {
 				thing = new Asteroid {
-					yAnimation = 0
-				}
+					yAnimation = 0,
+				},
+				artifactPulse = Key()
 			});
-			Pulse();
 		}
 	}
 
@@ -202,10 +202,10 @@ internal sealed class WizbosCurse : Artifact, IBucketArtifact, IAfterStatusActio
 			c.QueueImmediate(new AAddCard {
 				card = new TrashMiasma(),
 				amount = difference,
-				destination = CardDestination.Hand
+				destination = CardDestination.Hand,
+				artifactPulse = Key()
 			});
 			s.ship.Add(Status.heat, -difference);
-			Pulse();
 		}
 	}
 
@@ -247,7 +247,8 @@ internal sealed class ProcessorChip : Artifact, IBucketArtifact
 			combat.QueueImmediate(new AAddCard {
 				card = new SmartSteeringCard {
 					exhaustOverride = true,
-					exhaustOverrideIsPermanent = true
+					exhaustOverrideIsPermanent = true,
+					upgrade = Upgrade.A
 				},
 				amount = 1,
 				destination = CardDestination.Hand
@@ -296,9 +297,9 @@ internal sealed class DiamondInTheRough : Artifact, IBucketArtifact, IBeforeTurn
 			combat.QueueImmediate(new AStatus {
 				status = Status.shard,
 				statusAmount = trashInHand,
-				targetPlayer = true
+				targetPlayer = true,
+				artifactPulse = Key()
 			});
-			Pulse();
 		}
 	}
 

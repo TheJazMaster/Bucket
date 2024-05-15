@@ -28,6 +28,7 @@ public class RedrawStatusControllerPatches
                     combat.QueueImmediate(new ADelay());
 
                     Audio.Play(Event.CardHandling);
+                    combat.DrawCards(state, 1);
                     return true;
                 }
             }

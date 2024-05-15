@@ -92,6 +92,7 @@ public sealed class ModEntry : SimpleMod {
 	internal static IReadOnlyList<Type> SecretCardTypes { get; } = [
 		typeof(PriceOfProgressCard),
 		typeof(SmartSteeringCard),
+		typeof(BucketExeCard)
 	];
 
     internal static IEnumerable<Type> AllCardTypes
@@ -240,6 +241,7 @@ public sealed class ModEntry : SimpleMod {
 			Starters = new StarterDeck {
 				cards = [ new TrickShotCard(), new OverhaulCard() ]
 			},
+			ExeCardType = typeof(BucketExeCard),
 			NeutralAnimation = new()
 			{
 				Deck = BucketDeck.Deck,

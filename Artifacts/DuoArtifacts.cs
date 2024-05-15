@@ -262,7 +262,8 @@ internal sealed class ProcessorChip : Artifact, IBucketArtifact
 			new TTCard {
 				card = new SmartSteeringCard {
 					exhaustOverride = true,
-					exhaustOverrideIsPermanent = true
+					exhaustOverrideIsPermanent = true,
+					upgrade = Upgrade.A
 				}
 			},
 		];

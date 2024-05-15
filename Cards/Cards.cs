@@ -528,7 +528,9 @@ internal sealed class FeedbackLoopCard : Card, IBucketCard
 
 internal sealed class FineTuneCard : Card, IBucketCard
 {
+	internal static Spr Sprite;
 	public static void Register(IModHelper helper) {
+		Sprite = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Cards/FineTune.png")).Sprite;
 		helper.Content.Cards.RegisterCard("FineTune", new()
 		{
 			CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
@@ -538,7 +540,7 @@ internal sealed class FineTuneCard : Card, IBucketCard
 				rarity = Rarity.uncommon,
 				upgradesTo = [Upgrade.A, Upgrade.B]
 			},
-			Art = helper.Content.Sprites.RegisterSprite(ModEntry.Instance.Package.PackageRoot.GetRelativeFile("Sprites/Cards/FineTune.png")).Sprite,
+			Art = Sprite,
 			Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "FineTune", "name"]).Localize
 		});
 	}
@@ -1061,3 +1063,64 @@ internal sealed class PriceOfProgressCard : Card, IBucketCard
 		}
 	];
 }
+
+
+internal sealed class BucketExeCard : Card, IBucketCard
+{
+	public static void Register(IModHelper helper) {
+		helper.Content.Cards.RegisterCard("BucketExe", new()
+		{
+			CardType = MethodBase.GetCurrentMethod()!.DeclaringType!,
+			Meta = new()
+			{
+				deck = Deck.colorless,
+				rarity = Rarity.common,
+				upgradesTo = [Upgrade.A, Upgrade.B]
+			},
+			Art = FineTuneCard.Sprite,
+			Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "BucketExe", "name"]).Localize
+		});
+	}
+
+	public override CardData GetData(State state) => new() {
+		cost = upgrade == Upgrade.A ? 0 : 1,
+		exhaust = true,
+		description = ColorlessLoc.GetDesc(state, upgrade == Upgrade.B ? 3 : 2, ModEntry.Instance.BucketDeck.Deck),
+		artTint = "ffffff"
+    };
+
+	public override List<CardAction> GetActions(State s, Combat c)
+    {
+		Deck deck = ModEntry.Instance.BucketDeck.Deck;
+		return upgrade switch
+		{
+			Upgrade.B => [
+				new ACardOffering
+				{
+					amount = 3,
+					limitDeck = deck,
+					makeAllCardsTemporary = true,
+					overrideUpgradeChances = false,
+					canSkip = false,
+					inCombat = true,
+					discount = -1,
+					dialogueSelector = ".summonBucket"
+				}
+			],
+			_ => [
+				new ACardOffering
+				{
+					amount = 2,
+					limitDeck = deck,
+					makeAllCardsTemporary = true,
+					overrideUpgradeChances = false,
+					canSkip = false,
+					inCombat = true,
+					discount = -1,
+					dialogueSelector = ".summonBucket"
+				}
+			],
+		};
+	}
+}
+

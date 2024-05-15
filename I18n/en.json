@@ -71,7 +71,7 @@
         },
         "RecyclingBin": {
             "name": "RECYCLING BIN",
-            "description": "Once per turn, draw <c=card>+1 card</c> next turn when a <c=cardtrait>recycle</c> card is played."
+            "description": "Each turn, draw <c=card>+1 card</c> if a <c=cardtrait>recycle</c> card was played the previous turn.."
         },
         "Shredder": {
             "name": "SHREDDER",
@@ -89,7 +89,7 @@
     "duoArtifact": {
         "JuryRigging": {
             "name": "JURY-RIGGING",
-            "description": "Whenever two <c=trash>trash</c> cards are exhausted, gain a <c=card>Chip Shot</c>."
+            "description": "Every 2 <c=trash>trash</c> cards exhausted, gain a <c=card>Chip Shot</c>."
         },
         "CerebralShield": {
             "name": "CEREBRAL SHIELD",
@@ -250,6 +250,9 @@
         "PriceOfProgress": {
             "name": "Price of Progress",
             "description": "Add a <c=card>Trash</c> to your <c=keyword>discard pile</c>."
+        },
+        "BucketExe": {
+            "name": "Bucket.EXE"
         }
     }
 }

@@ -707,7 +707,7 @@ internal sealed class IllegalModsCard : Card, IBucketCard
 			new AAddCard {
 				card = new PriceOfProgressCard(),
 				amount = 1,
-				destination = CardDestination.Deck
+				destination = CardDestination.Discard
 			}
 		],
 		_ => [

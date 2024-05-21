@@ -1,6 +1,6 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "1.2.1",
+    "Version": "1.2.2",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",
@@ -27,5 +27,13 @@
             "Version": "2.0.2",
             "IsRequired": false
         }
-    ]
+    ],
+    "UpdateChecks": {
+        "NexusMods": {
+            "ID": 9
+        },
+        "GitHub": {
+            "Repository": "TheJazMaster/Bucket"
+        }
+    }
 }

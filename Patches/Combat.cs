@@ -38,6 +38,11 @@ public class CombatPatches
 		    original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.SendCardToHand)),
 			postfix: new HarmonyMethod(typeof(CombatPatches), nameof(Combat_SendCardToHand_Postfix))
 		);
+        Harmony.TryPatch(
+		    logger: Instance.Logger,
+		    original: AccessTools.DeclaredMethod(typeof(Combat), nameof(Combat.RenderDeck)),
+			postfix: new HarmonyMethod(typeof(CombatPatches), nameof(Combat_RenderDeck_Postfix))
+		);
     }
 
     private static IEnumerable<CodeInstruction> Combat_TryPlayCard_Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase originalMethod)
@@ -117,6 +122,24 @@ public class CombatPatches
                     artifact.Pulse();
                 }
             }
+        }
+    }
+
+    private static void Combat_RenderDeck_Postfix(Combat __instance, G g) {
+        if (g.boxes.FirstOrDefault(b => b.key == StableUK.combat_deck) is not { } box)
+			return;
+		if (!box.IsHover())
+			return;
+
+        if (g.state.deck.Count > 0) {
+            foreach (Artifact item in g.state.EnumerateAllArtifacts()) {
+				if (item is XRayVisionArtifact artifact) {
+					g.tooltips.Add(g.tooltips.pos, new TTCard {
+                        card = g.state.deck.Last()
+                    });
+					break;
+				}
+			}
         }
     }
 }

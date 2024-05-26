@@ -133,23 +133,32 @@ internal sealed class LearningAlgorithmCard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 1,
-		exhaust = upgrade == Upgrade.B,
+		cost = upgrade == Upgrade.B ? 0 : 1,
 		artTint = "ffffff"
 	};
 
-	public override List<CardAction> GetActions(State s, Combat c) => [
-		new AStatus {
-			status = Status.autopilot,
-			statusAmount = upgrade == Upgrade.B ? 2 : 1,
-			targetPlayer = true
-		},
-		new AStatus {
-			status = ModEntry.Instance.RedrawStatus,
-			statusAmount = upgrade == Upgrade.None ? 1 : 2,
-			targetPlayer = true
-		},
-	];
+	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch
+	{
+		Upgrade.B => [
+			new AStatus {
+				status = Status.autopilot,
+				statusAmount = 1,
+				targetPlayer = true
+			}
+		],
+		_ => [
+			new AStatus {
+				status = Status.autopilot,
+				statusAmount = 1,
+				targetPlayer = true
+			},
+			new AStatus {
+				status = ModEntry.Instance.RedrawStatus,
+				statusAmount = upgrade == Upgrade.None ? 1 : 2,
+				targetPlayer = true
+			},
+		]
+	};
 }
 
 
@@ -464,6 +473,10 @@ internal sealed class GreenEnergyCard : Card, IBucketCard
 					changeAmount = amt,
 					xHint = 1
 				},
+				new ADrawCard {
+					count = amt,
+					xHint = 1
+				},
 				new AStatus {
 					status = ModEntry.Instance.RedrawStatus,
 					statusAmount = amt,
@@ -475,6 +488,10 @@ internal sealed class GreenEnergyCard : Card, IBucketCard
 				new AVariableHintRecycle(),
 				new AEnergy {
 					changeAmount = amt,
+					xHint = 1
+				},
+				new ADrawCard {
+					count = amt,
 					xHint = 1
 				},
 			],

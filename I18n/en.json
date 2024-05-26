@@ -71,7 +71,7 @@
         },
         "RecyclingBin": {
             "name": "RECYCLING BIN",
-            "description": "Each turn, draw <c=card>+1 card</c> if a <c=cardtrait>recycle</c> card was played the previous turn.."
+            "description": "Each turn, draw <c=card>+1 card</c> if a <c=cardtrait>recycle</c> card was played the previous turn."
         },
         "Shredder": {
             "name": "SHREDDER",

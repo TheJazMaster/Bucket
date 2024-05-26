@@ -1008,7 +1008,10 @@ internal sealed class SmartSteeringCard : Card, IBucketCard
 		retain = true,
 		recycle = true,
 		temporary = true,
-		description = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", upgrade.ToString()], new { Dir = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", flipped ? "right" : "left"]) }),
+		description = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", upgrade.ToString()], new {
+			Dir = ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", flipped ? "right" : "left"]),
+			InvDir = upgrade == Upgrade.A ? ModEntry.Instance.Localizations.Localize(["card", "SmartSteering", "description", flipped ? "left" : "right"]) : null
+		}),
 		artTint = "ffffff"
 	};
 

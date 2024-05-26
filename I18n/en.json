@@ -241,7 +241,7 @@
             "name": "Smart Steering",
             "description": {
                 "None": "<c=keyword>When flipped, move to the {{Dir}} of\nyour hand.</c>",
-                "A": "Move right 1 space. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
+                "A": "Move {{InvDir}} 1 space. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "B": "Gain 1 <c=status>temp shield</c>. <c=keyword>When flipped, move to the {{Dir}} of your hand.</c>",
                 "left": "<c=action>left</c>",
                 "right": "<c=action>right</c>"

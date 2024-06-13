@@ -664,10 +664,8 @@ internal sealed class ContingencyPlanCard : Card, IBucketCard
 
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {
 		Upgrade.B => [
-			new AStatus {
-				status = Status.shield,
-				statusAmount = 2,
-				targetPlayer = true
+			new ADrawCard {
+				count = 3
 			},
 			new ACardSelectImproved
 			{
@@ -676,10 +674,8 @@ internal sealed class ContingencyPlanCard : Card, IBucketCard
 			}
 		],
 		_ => [
-			new AStatus {
-				status = Status.shield,
-				statusAmount = 2,
-				targetPlayer = true
+			new ADrawCard {
+				count = 3
 			},
 			new ACardSelectImproved
 			{

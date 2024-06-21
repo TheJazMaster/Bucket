@@ -179,7 +179,8 @@ public sealed class ModEntry : SimpleMod {
 			Definition = new()
 			{
 				icon = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Icons/Ingenuity.png")).Sprite,
-				color = new("FFED82")
+				color = new("FFED82"),
+				isGood = true
 			},
 			Name = AnyLocalizations.Bind(["status", "Ingenuity", "name"]).Localize,
 			Description = AnyLocalizations.Bind(["status", "Ingenuity", "description"]).Localize
@@ -190,7 +191,8 @@ public sealed class ModEntry : SimpleMod {
 			Definition = new()
 			{
 				icon = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Icons/Salvage.png")).Sprite,
-				color = new("3D3D3D")
+				color = new("3D3D3D"),
+				isGood = true
 			},
 			Name = AnyLocalizations.Bind(["status", "Salvage", "name"]).Localize,
 			Description = AnyLocalizations.Bind(["status", "Salvage", "description"]).Localize
@@ -201,7 +203,8 @@ public sealed class ModEntry : SimpleMod {
 			Definition = new()
 			{
 				icon = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Icons/SteamCover.png")).Sprite,
-				color = new("CACACA")
+				color = new("CACACA"),
+				isGood = true
 			},
 			Name = AnyLocalizations.Bind(["status", "SteamCover", "name"]).Localize,
 			Description = AnyLocalizations.Bind(["status", "SteamCover", "description"]).Localize

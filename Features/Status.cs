@@ -11,13 +11,14 @@ using Microsoft.Extensions.Logging;
 namespace TheJazMaster.Bucket.Features;
 #nullable enable
 
-public class StatusManager : IStatusLogicHook
+public class StatusManager : IStatusLogicHook, IStatusRenderHook
 {
     private static ModEntry Instance => ModEntry.Instance;
 
     public StatusManager()
     {
-        ModEntry.Instance.KokoroApi.RegisterStatusLogicHook(this, 0);
+        Instance.KokoroApi.RegisterStatusLogicHook(this, 0);
+        Instance.KokoroApi.RegisterStatusRenderHook(this, 0);
 
         ModEntry.Instance.Harmony.TryPatch(
 		    logger: ModEntry.Instance.Logger,
@@ -87,4 +88,18 @@ public class StatusManager : IStatusLogicHook
 		return HandleSteamCover(state, combat, timing, ship, status, ref amount, ref setStrategy)
             || HandleIngenuity(state, combat, timing, ship, status, ref amount, ref setStrategy);
 	}
+    
+    public List<Tooltip> OverrideStatusTooltips(Status status, int amount, Ship? ship, List<Tooltip> tooltips) {
+		if (status == Instance.SteamCoverStatus.Status) return [
+            ..tooltips,
+            new TTCard {
+                card = new TrashFumes()
+            }
+        ];
+        if (status == Instance.SalvageStatus.Status) return [
+            ..tooltips,
+            ..StatusMeta.GetTooltips(Status.tempShield, 1)
+        ];
+        return tooltips;
+    }
 }

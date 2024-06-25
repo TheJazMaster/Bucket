@@ -1,6 +1,6 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "1.2.5",
+    "Version": "1.2.7",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",

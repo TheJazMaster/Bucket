@@ -665,7 +665,7 @@ internal sealed class ContingencyPlanCard : Card, IBucketCard
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {
 		Upgrade.B => [
 			new ADrawCard {
-				count = 3
+				count = 2
 			},
 			new ACardSelectImproved
 			{
@@ -675,7 +675,7 @@ internal sealed class ContingencyPlanCard : Card, IBucketCard
 		],
 		_ => [
 			new ADrawCard {
-				count = 3
+				count = 2
 			},
 			new ACardSelectImproved
 			{

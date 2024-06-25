@@ -204,9 +204,9 @@
         "ContingencyPlan": {
             "name": "Contingency Plan",
             "description": {
-                "None": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
-                "A": "Gain 2 <c=status>shield</c>. Put a card in <c=keyword>hand</c> on top of your draw pile.",
-                "B": "Gain 2 <c=status>shield</c>. Put a card in your <c=keyword>draw pile</c> on top of it."
+                "None": "Draw 2. Put a card in <c=keyword>hand</c> on top of your draw pile.",
+                "A": "Gain 2. Put a card in <c=keyword>hand</c> on top of your draw pile.",
+                "B": "Gain 2. Put a card in your <c=keyword>draw pile</c> on top of it."
             }
         },
         "IllegalMods": {

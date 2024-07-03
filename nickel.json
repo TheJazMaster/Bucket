@@ -1,6 +1,7 @@
 {
     "UniqueName": "TheJazMaster.Bucket",
-    "Version": "1.2.7",
+    "DisplayName": "Bucket, the Inventor",
+    "Version": "1.2.8",
     "RequiredApiVersion": "0.1.0",
     "EntryPointAssembly": "Bucket.dll",
     "LoadPhase": "AfterDbInit",

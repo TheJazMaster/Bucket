@@ -31,7 +31,7 @@ public sealed class ModEntry : SimpleMod {
 	internal ILocalizationProvider<IReadOnlyList<string>> AnyLocalizations { get; }
 	internal ILocaleBoundNonNullLocalizationProvider<IReadOnlyList<string>> Localizations { get; }
 
-    internal ICharacterEntry BucketCharacter { get; }
+    internal IPlayableCharacterEntryV2 BucketCharacter { get; }
 
     internal IDeckEntry BucketDeck { get; }
 
@@ -236,7 +236,7 @@ public sealed class ModEntry : SimpleMod {
         //     }
         // });
 
-        BucketCharacter = helper.Content.Characters.RegisterCharacter("Bucket", new()
+        BucketCharacter = helper.Content.Characters.V2.RegisterPlayableCharacter("Bucket", new()
 		{
 			Deck = BucketDeck.Deck,
 			Description = AnyLocalizations.Bind(["character", "description"]).Localize,
@@ -247,13 +247,13 @@ public sealed class ModEntry : SimpleMod {
 			ExeCardType = typeof(BucketExeCard),
 			NeutralAnimation = new()
 			{
-				Deck = BucketDeck.Deck,
+				CharacterType = BucketDeck.Deck.Key(),
 				LoopTag = "neutral",
 				Frames = NeutralFrames.Select(entry => entry.Sprite).ToList()
 			},
 			MiniAnimation = new()
 			{
-				Deck = BucketDeck.Deck,
+				CharacterType = BucketDeck.Deck.Key(),
 				LoopTag = "mini",
 				Frames = [
 					BucketPortraitMini.Sprite
@@ -268,15 +268,15 @@ public sealed class ModEntry : SimpleMod {
             }
         });
 
-		helper.Content.Characters.RegisterCharacterAnimation("GameOver", new()
+		helper.Content.Characters.V2.RegisterCharacterAnimation("GameOver", new()
 		{
-			Deck = BucketDeck.Deck,
+			CharacterType = BucketDeck.Deck.Key(),
 			LoopTag = "gameover",
 			Frames = GameoverFrames.Select(entry => entry.Sprite).ToList()
 		});
-		helper.Content.Characters.RegisterCharacterAnimation("Squint", new()
+		helper.Content.Characters.V2.RegisterCharacterAnimation("Squint", new()
 		{
-			Deck = BucketDeck.Deck,
+			CharacterType = BucketDeck.Deck.Key(),
 			LoopTag = "squint",
 			Frames = SquintFrames.Select(entry => entry.Sprite).ToList()
 		});
@@ -287,7 +287,7 @@ public sealed class ModEntry : SimpleMod {
 
 	private static List<ISpriteEntry> RegisterTalkSprites(string fileSuffix)
     {
-        var files = Instance.Package.PackageRoot.GetRelative($"Sprites/Character/{fileSuffix}").AsDirectory?.GetFilesRecursively();
+        var files = Instance.Package.PackageRoot.GetRelative($"Sprites/Character/{fileSuffix}").AsDirectory?.GetFilesRecursively().Where(f => f.Name.EndsWith(".png"));
 		List<ISpriteEntry> sprites = [];
 		if (files != null) {
 			foreach (IFileInfo file in files) {

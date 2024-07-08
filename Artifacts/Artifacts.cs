@@ -156,7 +156,7 @@ internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
 
 	public override void OnPlayerPlayCard(int energyCost, Deck deck, Card card, State state, Combat combat, int handPosition, int handCount)
 	{
-		if (!active && card.GetDataWithOverrides(state).recycle) {
+		if (active && card.GetDataWithOverrides(state).recycle) {
 			active = false;
 			combat.Queue(new AStatus {
 				status = Status.drawNextTurn,

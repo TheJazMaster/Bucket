@@ -370,7 +370,7 @@ internal sealed class EurekaCard : Card, IBucketCard
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AStatus {
 			status = ModEntry.Instance.RedrawStatus,
-			statusAmount = upgrade == Upgrade.A ? 4 : 3,
+			statusAmount = upgrade == Upgrade.A ? 5 : 4,
 			targetPlayer = true
 		},
 		new AAddCard {
@@ -662,28 +662,16 @@ internal sealed class ContingencyPlanCard : Card, IBucketCard
 		artTint = "ffffff"
 	};
 
-	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {
-		Upgrade.B => [
-			new ADrawCard {
-				count = 3
-			},
-			new ACardSelectImproved
-			{
-				browseAction = new APutCardOnTopOfDrawPile(),
-				browseSource = CardBrowse.Source.DrawPile
-			}
-		],
-		_ => [
-			new ADrawCard {
-				count = 3
-			},
-			new ACardSelectImproved
-			{
-				browseAction = new APutCardOnTopOfDrawPile(),
-				browseSource = CardBrowse.Source.Hand
-			}
-		],
-	};
+	public override List<CardAction> GetActions(State s, Combat c) => [
+		new ADrawCard {
+			count = upgrade == Upgrade.B ? 5 : 3
+		},
+		new ACardSelectImproved
+		{
+			browseAction = new APutCardOnTopOfDrawPile(),
+			browseSource = CardBrowse.Source.Hand
+		}
+	];
 }
 
 

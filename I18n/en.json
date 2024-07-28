@@ -45,7 +45,7 @@
     "status": {
         "Salvage": {
             "name": "Salvage",
-            "description": "Gain {0} <c=status>TEMP SHIELD</c> whenever you draw a <c=trash>trash</c> card."
+            "description": "At the start of each turn, gain {0} <c=status>TEMP SHIELD</c> per <c=trash>trash</c> card in your hand."
         },
         "SteamCover": {
             "name": "Steam Cover",
@@ -63,7 +63,7 @@
         },
         "Doohicky": {
             "name": "DOOHICKY",
-            "description": "The first time a <c=trash>trash</c> card is drawn each turn, draw a card."
+            "description": "At the start of each turn, if there's a <c=trash>trash</c> card in your hand, <c=action>draw 1 card</c>."
         },
         "Workaround": {
             "name": "WORKAROUND",
@@ -206,7 +206,7 @@
             "description": {
                 "None": "Draw 3. Put a card in <c=keyword>hand</c> on top of your draw pile.",
                 "A": "Draw 3. Put a card in <c=keyword>hand</c> on top of your draw pile.",
-                "B": "Draw 3. Put a card in your <c=keyword>draw pile</c> on top of it."
+                "B": "Draw 5. Put a card in your <c=keyword>hand</c> on top of your draw pile."
             }
         },
         "IllegalMods": {

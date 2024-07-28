@@ -30,7 +30,7 @@ internal sealed class XRayVisionArtifact : Artifact, IBucketArtifact
 }
 
 
-internal sealed class DoohickyArtifact : Artifact, IOnDrawSpecificCardArtifact, IBucketArtifact
+internal sealed class DoohickyArtifact : Artifact, IBucketArtifact
 {
 	bool active = true;
 
@@ -52,20 +52,8 @@ internal sealed class DoohickyArtifact : Artifact, IOnDrawSpecificCardArtifact, 
 
 	public override void OnTurnStart(State state, Combat combat)
 	{
-		active = true;
-	}
-
-	public override void OnCombatEnd(State state)
-	{
-		active = true;
-	}
-
-	public void OnDrawSpecificCard(State s, Combat c, Card card)
-	{
-		if (card.GetMeta().deck == Deck.trash && active) {
-			active = false;
-			c.QueueImmediate(new ADrawCard {
-				count = 1,
+		if (active) {
+			combat.QueueImmediate(new ADoohicky {
 				artifactPulse = Key()
 			});
 		}

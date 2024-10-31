@@ -39,7 +39,8 @@
         "makeFavorite": {
             "name": "make your favorite",
             "description": "Make a card <c=cardtrait>your favorite</c> forever.",
-            "showCardText": "Made <c=cardtrait>your favorite</c>!"
+            "showCardText": "Made <c=cardtrait>your favorite</c>!",
+            "cardSelectText": "Pick a card to make <c=cardtrait>your favorite</c>."
         }
     },
     "status": {

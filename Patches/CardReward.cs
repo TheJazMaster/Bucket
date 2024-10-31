@@ -43,10 +43,11 @@ public class CardRewardPatches
                             }
                             return true;
                         }).ToList() : basicCards;
+                        Rand rng = inCombat ? s.rngCardOfferingsMidcombat : s.rngCardOfferings;
                         Card card = (Card)Activator.CreateInstance(list.Random(s.rngCardOfferings).GetType());
                         if (makeAllCardsTemporary) card.temporaryOverride = true;
                         if (discount > 0) card.discount = discount;
-                        card.upgrade = CardReward.GetUpgrade(s.rngCardOfferings, s.map, card, (s.GetDifficulty() >= 1) ? 0.5 : 1.0, overrideUpgradeChances);
+                        card.upgrade = CardReward.GetUpgrade(s, rng, s.map, card, (s.GetDifficulty() >= 1) ? 0.5 : 1.0, overrideUpgradeChances);
                         card.flipAnim = 1.0;
                         card.drawAnim = 1.0;
                         card.temporaryOverride = false;

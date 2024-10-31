@@ -166,9 +166,9 @@
         "Eureka": {
             "name": "Eureka!",
             "description": {
-                "None": "Gain 3 <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
-                "A": "Gain 4 <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
-                "B": "Gain 3 <c=status>redraw</c>. Add a <c=card>Trash</c> to your <c=keyword>draw pile</c>."
+                "None": "Gain {{Amount}} <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
+                "A": "Gain {{Amount}} <c=status>redraw</c>. Add a <c=card>Price of Progress</c> to your <c=keyword>draw pile</c>.",
+                "B": "Gain {{Amount}} <c=status>redraw</c>. Add a <c=card>Trash</c> to your <c=keyword>draw pile</c>."
             }
         },
         "OxiFuelCell": {

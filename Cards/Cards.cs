@@ -363,20 +363,25 @@ internal sealed class EurekaCard : Card, IBucketCard
 
 	public override CardData GetData(State state) => new() {
 		cost = 1,
-		description = ModEntry.Instance.Localizations.Localize(["card", "Eureka", "description", upgrade.ToString()]),
+		description = ModEntry.Instance.Localizations.Localize(["card", "Eureka", "description", upgrade.ToString()], new { Amount = GetRedraw() }),
 		artTint = "ffffff"
 	};
 
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AStatus {
 			status = ModEntry.Instance.RedrawStatus,
-			statusAmount = upgrade == Upgrade.A ? 5 : 4,
+			statusAmount = upgrade == Upgrade.A ? 4 : 3,
 			targetPlayer = true
 		},
 		new AAddCard {
 			card = upgrade == Upgrade.B ? new ColorlessTrash() : new PriceOfProgressCard()
 		}
 	];
+
+	private int GetRedraw() => upgrade switch {
+		Upgrade.A => 4,
+		_ => 3
+	};
 }
 
 

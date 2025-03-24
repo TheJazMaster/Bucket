@@ -1,0 +1,286 @@
+{
+    "TookDamage": {
+        "Basic": [
+            [ "Ah. Don't worry, I can fix that." ],
+            [ "Oh well that was just un-cool.", "annoyed" ],
+            [ "Yikes...", "annoyed" ]
+        ],
+        "Dizzy": [ [
+ 			{"Bucket": [ "A pox! A pox unto you and your people!", "angry" ] },
+ 			{"Dizzy": [ "Woah. Bucket's gone medieval.", "serious" ] }
+        ] ],
+        "Isaac": [ [
+ 			{"Isaac": [ "Woof. That doesn't seem good." ] },
+ 			{"Bucket": [ "I'll take a look at it in a second.", "bored" ] }
+        ] ],
+        "Max": [ [
+ 			{"Max": [ "Yikes." ] },
+ 			{"Bucket": [ "Also yikes." ] }
+        ] ],
+        "Peri": [ [
+			{"Bucket": [ "Aight, let's hit 'em back for twice as much." ] },
+			{"Peri": [ "An eye for an eye!", "vengeful" ] }
+        ] ],
+        "Riggs": [ [
+			{"Riggs": [ "I uh... probably should have dodged that." ] },
+			{"Bucket": [ "There's always next time." ] }
+        ] ],
+        "Johnson": [ [
+			{"Bucket": [ "You'll pay for that!", "angry" ] },
+			{"Johnson": [ "Literally, or figuratively? I'll take either." ] }
+        ] ],
+        "Books": [ [
+			{"Bucket": [ "Hey! Watch it! We've got precious cargo aboard!", "angry" ] },
+            {"Books": [ "Hee hee hee!" ] }
+        ] ]
+    },
+    "TookNonHullDamage": {
+        "Basic": [
+            [ "Not bad, not bad... but you'll have to do a lot better than that." ],
+            [ "Hah!" ],
+            [ "Awww, that all you got?" ]
+        ]
+    },
+
+
+    "BucketDealtDamage": {
+        "Basic": [
+            [ "POW!" ],
+            [ "Ooohooho.", "excited" ],
+            [ "Nothing like a few shots of the cannon to make a fish feel alive!" ]
+        ],
+        "Dizzy": [ [
+			{"Dizzy": [ "Not bad!" ] },
+			{"Bucket": [ "Not good enough, though... gotta make them cry home to mommy!" ] }
+        ] ],
+        "Riggs": [ [
+			{"Riggs": [ "I love firing the gun! It makes me feel powerful..." ] },
+			{"Bucket": [ "Hell yeah it does!" ] }
+        ] ],
+        "Isaac": [ [
+			{"Isaac": [ "Woah, I think that one shook the ship." ] },
+			{"Bucket": [ "Yeah! Gotta love a good hearty impact." ] }
+        ] ],
+        "Drake": [ [
+			{"Bucket": [ "YES! VIOLENCE!", "excited" ] },
+			{"Drake": [ "I could't agree more!", "sly" ] }
+        ] ],
+        "Max": [ [
+			{"Bucket": [ "Boom, headshot." ] },
+			{"Max": [ "Not how that works." ] }
+        ] ],
+        "Books": [ [
+			{"Bucket": [ "Hey, good shooting, kid. You're a natural!" ] },
+			{"Books": [ "Thanks!", "wowza" ] }
+        ] ],
+        "CAT": [ [
+			{"CAT": [ "Violence is never the solution... except for when it is." ] },
+			{"Bucket": [ "Like right now." ] }
+        ] ]
+    },
+    "PeriDealtDamage": {
+        "Peri": [ [
+			{"Bucket": [ "Sick shooting Peri! I can really see where the combat training went." ] },
+			{"Peri": [ "Aw, you're just saying that...", "shy" ] }
+        ] ]
+    },
+    "DealtBigDamage": {
+        "Basic": [
+            [ "EAT IT!" ],
+            [ "SUCK ON THAT!" ],
+            [ "HAH!" ],
+            [ "Can't wait to harvest all their leftover scrap after this!" ],
+            [ "Had enough, or are you thirsty for more?" ]
+        ]
+    },
+    "Missed": {
+        "Basic": [
+            [ "SHOOT!", "angry" ],
+            [ "CRAP!", "angry" ],
+            [ "DAMMIT!", "angry" ],
+            [ "AH HELL!", "angry" ],
+            [ "SHIT!", "angry" ],
+            [ "DANGIT!", "angry" ],
+            [ "BAH!", "angry" ],
+            [ "CRUD!", "angry" ],
+            [ "BITE ME!", "angry" ],
+            [ "FFAAH-!", "angry" ],
+            [ "AH PISS!", "angry" ],
+            [ "COME ON!", "angry" ],
+            [ "REALLY!?", "angry" ],
+            [ "WHAT!?", "angry" ],
+            [ "C'MON!", "angry" ],
+            [ "WHAT A LOAD!", "angry" ],
+            [ "AGH!", "angry" ],
+            [ "AH COME OFF IT!", "angry" ],
+            [ "OH BULL!", "angry" ]
+        ]
+    },
+    "AboutToDie": {
+        "Basic": [
+            [ "Ack...! Oh man it's ON.", "annoyed" ]
+        ],
+        "Dizzy": [ [
+			{"Dizzy": [ "Okay, we really should get up more shields.", "explains" ] },
+			{"Bucket": [ "Or maybe we just kill them faster.", "bored" ] }
+        ] ],
+        "Riggs": [ [
+ 			{"Riggs": [ "Whoops!" ] },
+ 			{"Bucket": [ "Yeah.", "annoyed" ] }
+        ] ],
+        "Peri": [ [
+			{"Peri": [ "Alright gang, now's our time to shine!", "vengeful" ] },
+			{"Bucket": [ "A classic underdog story!" ] }
+        ] ],
+        "Isaac": [ [
+			{"Bucket": [ "You can't defeat me! I am a GOD amongst mortals!", "angry" ] },
+			{"Isaac": [ "Alright, maybe dial it back a smidge.", "shy" ] }
+        ] ],
+        "Drake": [ [
+			{"Drake": [ "Oh, come ON Bucket!" ] },
+			{"Bucket": [ "\"Come on\" what? What!? Tell me now so I don't gotta flexo-bust outta this armor and choke it out of you with my own two fins!", "angry" ] }
+        ] ],
+        "Books": [ [
+			{"Bucket": [ "Can't die now. Gotta protect the baby." ] },
+			{"Books": [ "I'm the baby!", "paws" ] }
+        ] ],
+        "CAT": [ [
+			{"Bucket": [ "Okay. Okay. I can still make this work." ] },
+			{"CAT": [ "Nothing we've never had to deal with before." ] }
+        ] ]
+    },
+    "HitArmor": {
+        "Basic": [
+            [ "I hate armor... unless it's on us, of course.", "annoyed" ]
+        ]
+    },
+    "UsedArmor": {
+        "Basic": [
+            [ "Yeah, keep hitting our armor! See how far that takes ya!" ]
+        ]
+    },
+    "EmptyHand": {
+        "Basic": [
+            [ "Oh. Out of options. When'd that happen?" ],
+            [ "Ah. Oh." ]
+        ]
+    },
+    "EmptyHandExcessEnergy": {
+        "Basic": [
+            [ "That's okay, didn't need that energy anyways." ]
+        ]
+    },
+    "TrashHand": {
+        "Basic": [
+            [ "Ooohohoo... So much stuff to tinker with!", "excited" ],
+            [ "One man's trash is another fish's treasure." ],
+            [ "Can't wait to see what I can cook up with these babies." ],
+            [ "Some extra junk lying around? No big deal." ]
+        ]
+    },
+    "NoOverlap": {
+        "Basic": [
+            [ "See ya." ]
+        ]
+    },
+    "NoOverlapButSeeker": {
+        "Basic": [
+            [ "Shoot... seeker incoming!!!" ]
+        ]
+    },
+    "EvilRiggsGetsTrolled": {
+        "Basic": [ [
+			{"EvilRiggs": [ "And where do you think YOU'RE going?" ] },
+			{"Bucket": [ "Yo mama's house." ] }
+        ] ]
+    },
+    "LongFight": {
+        "Basic": [
+            [ "...This done yet? We still goin'?", "bored" ],
+            [ "Oh come on, just die already!", "annoyed" ],
+            [ "Maybe if this fight goes on long enough they'll die of boredom.", "annoyed" ]
+        ]
+    },
+    "Tiderunner": {
+        "Basic": [
+            [ "Oh hell yeah, now this is my kind of ship!" ]
+        ]
+    },
+    "GoingToOverheat": {
+        "Basic": [
+            [ "I HAVE A BUILT-IN COOLANT SYSTEM! ELEMENTS OF NATURE, DO YOUR WORST!!!", "angry" ],
+            [ "Man, dunno about you guys, but I sure am glad to be in a suit full of water right now." ]
+        ],
+        "Drake": [ [
+			{"Bucket": [ "DRAKE.", "angry" ] },
+			{"Drake": [ "Shush! Don't interrupt my process!", "mad" ] }
+        ] ]
+    },
+    "GotAutopilot": {
+        "Basic": [
+            [ "Now to just sit back and let the ship do the steering." ],
+            [ "I love having machines do my work for me!" ],
+            [ "Ah, the convenience of a self-flying ship..." ],
+            [ "Y'know, this sorta gives me the idea for an autopilot suit...", "squint" ]
+        ]
+    },
+    "CreatingTrash": {
+        "Basic": [
+            [ "Hope that doesn't come back to bite us later.", "squint" ],
+            [ "I'll just put that over there..." ],
+            [ "(...I hope nobody noticed that...)", "squint" ],
+            [ "Ack, lemme just pull off these extra bits." ],
+            [ "Hope that wasn't too important." ]
+        ]
+    },
+    "Wizbo": {
+        "Basic": [ [
+            {"Wizbo": [ "I cast water carbonation!" ] },
+            {"Bucket": [ "I will cave in your skull with my goddamn gorilla hands.", "annoyed" ] }
+        ] ]
+    },
+    "Jumbo": {
+        "Basic": [ [
+            {"Jumbo": [ "Man, you guys suck." ] },
+            {"Bucket": [ "I'm gonna press in the soft spot on your head with my giganto-thumbs.", "annoyed" ] }
+        ] ]
+    },
+    "George": {
+        "Basic": [ [
+            {"George": [ "Soon, you'll be kicking the bucket!" ] },
+            {"Bucket": [ "Oh my god that was so lame you're gonna make me cry.", "bored" ] }
+        ] ]
+    },
+    "PlayingSports": {
+        "Basic": [
+            [ "Sports!! Sports!! Sports!! Sports!! Sports!!" ]
+        ]
+    },
+    "DrawThree": {
+        "Riggs": [ [
+			{"Bucket": [ "It's thinking time, girls! Put on your thinking hats!" ] },
+			{"Riggs": [ "Thinkin' outta my GOURD right now." ] }
+        ] ]
+    },
+    "Overhaul": {
+        "Basic": [ [
+			{"Bucket": [ "Ah, finally got around to cutting off those useless extra bits on our shield generators. Should be much more efficient now." ] },
+			{"Switch": [
+                {"Max": [ "Okay? What do we do with the extra bits now, though?" ] }
+            ] }
+        ] ]
+    },
+    "OxiFuelCells": {
+        "Basic": [ [
+			{"Bucket": [ "Finally, making some use out of all that wasted oxygen." ] },
+			{"Switch": [
+                {"Dizzy": [ "Hey! I was using that!", "mad" ] }
+            ] }
+        ] ]
+    },
+    "IllegalMods": {
+        "Basic": [
+            [ "Don't ask me where I got these." ]
+        ]
+    }
+}

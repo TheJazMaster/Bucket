@@ -1,0 +1,23 @@
+{
+    "LoseCharacterCard_{{CharacterType}}": {
+        "Basic": [
+            [ "Whatever. Didn't want that anyways.", "annoyed" ]
+        ]
+    },
+    "CrystallizedFriendEvent_{{CharacterType}}": {
+        "Basic": [
+            [ "Whuh... bwuh... Where am I...?", "squint" ]
+        ]
+    },
+    "ShopkeeperInfinite": {
+        "Basic": [ [
+            {"Bucket": [ "Hey Cleo, you still lookin' some extra scrap?" ] },
+            {"Cleo": [ "Yeah, just put it over there, thanks." ] },
+            {"Jump": "NewShop" }
+        ], [
+            {"Bucket": [ "Nice setup you got here." ] },
+            {"Cleo": [ "Thanks!" ] },
+            {"Jump": "NewShop" }
+        ] ]
+    }
+}

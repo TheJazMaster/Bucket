@@ -8,7 +8,7 @@ namespace TheJazMaster.Bucket;
 
 public class CustomShowCards : ShowCards
 {
-	public string message;
+	required public string message;
 
 	public override void Render(G g)
 	{

@@ -5,7 +5,7 @@ namespace TheJazMaster.Bucket.Actions;
 
 public class ASalvage : CardAction
 {
-	internal int amount = 0;
+	public int amount = 0;
 
 	public override void Begin(G g, State s, Combat c)
 	{

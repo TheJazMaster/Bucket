@@ -13,7 +13,7 @@ namespace TheJazMaster.Bucket.Artifacts;
 
 internal sealed class JuryRigging : Artifact, IBucketArtifact, IOnExhaustArtifact
 {
-	int counter = 0;
+	public int counter = 0;
 	public static void Register(IModHelper helper)
 	{
 		if (ModEntry.Instance.DuoArtifactsApi == null) return;

@@ -25,19 +25,19 @@ internal sealed class TrickShotCard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 1,
+		cost = 2,
 		artTint = "ffffff"
 	};
 
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AAttack
 		{
-			damage = GetDmg(s, upgrade == Upgrade.A ? 2 : 1)
+			damage = GetDmg(s, upgrade == Upgrade.A ? 5 : upgrade == Upgrade.B ? 4 : 3)
 		},
 		new AStatus
 		{
 			status = ModEntry.Instance.RedrawStatus,
-			statusAmount = upgrade == Upgrade.B ? 2 : 1,
+			statusAmount = upgrade == Upgrade.B ? 3 : 2,
 			targetPlayer = true
 		}
 	];
@@ -72,7 +72,8 @@ internal sealed class OverhaulCard : Card, IBucketCard
 		{
 			status = Status.shield,
 			statusAmount = upgrade == Upgrade.B ? 3 : 2,
-			targetPlayer = true
+			targetPlayer = true,
+			dialogueSelector = ".Overhaul"
 		},
 		new AAddCard
 		{
@@ -232,8 +233,8 @@ internal sealed class TinkerCard : Card, IBucketCard
 			Upgrade.A => [
 				new AVariableHintTrash(),
 				new ADrawCard {
-					count = amt,
-					xHint = 1
+					count = 2*amt,
+					xHint = 2
 				},
 				new ADrawCard {
 					count = 2
@@ -243,16 +244,16 @@ internal sealed class TinkerCard : Card, IBucketCard
 				new AVariableHintTrash(),
 				new AStatus {
 					status = ModEntry.Instance.RedrawStatus,
-					statusAmount = amt,
+					statusAmount = 2*amt,
 					targetPlayer = true,
-					xHint = 1
+					xHint = 2
 				}
 			],
 			_ => [
 				new AVariableHintTrash(),
 				new ADrawCard {
-					count = amt,
-					xHint = 1
+					count = 2*amt,
+					xHint = 2
 				}
 			]
 		};
@@ -277,8 +278,7 @@ internal sealed class GarbageChuteCard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 0,
-		exhaust = upgrade != Upgrade.A,
+		cost = upgrade == Upgrade.A ? 0 : 1,
 		retain = upgrade == Upgrade.B,
 		artTint = "ffffff"
 	};
@@ -362,7 +362,7 @@ internal sealed class EurekaCard : Card, IBucketCard
 	}
 
 	public override CardData GetData(State state) => new() {
-		cost = 1,
+		cost = upgrade == Upgrade.A ? 0 : 1,
 		description = ModEntry.Instance.Localizations.Localize(["card", "Eureka", "description", upgrade.ToString()], new { Amount = GetRedraw() }),
 		artTint = "ffffff"
 	};
@@ -370,16 +370,16 @@ internal sealed class EurekaCard : Card, IBucketCard
 	public override List<CardAction> GetActions(State s, Combat c) => [
 		new AStatus {
 			status = ModEntry.Instance.RedrawStatus,
-			statusAmount = upgrade == Upgrade.A ? 4 : 3,
+			statusAmount = GetRedraw(),
 			targetPlayer = true
 		},
 		new AAddCard {
-			card = upgrade == Upgrade.B ? new ColorlessTrash() : new PriceOfProgressCard()
+			card = new PriceOfProgressCard()
 		}
 	];
 
 	private int GetRedraw() => upgrade switch {
-		Upgrade.A => 4,
+		Upgrade.B => 5,
 		_ => 3
 	};
 }
@@ -414,7 +414,8 @@ internal sealed class OxiFuelCellCard : Card, IBucketCard
 		{
 			Upgrade.A => [
 				new AEnergy {
-					changeAmount = 3
+					changeAmount = 3,
+					dialogueSelector = ".OxiFuelCells"
 				},
 				new AAddCard {
 					card = new OxygenLeak(),
@@ -423,7 +424,8 @@ internal sealed class OxiFuelCellCard : Card, IBucketCard
 			],
 			Upgrade.B => [
 				new AEnergy {
-					changeAmount = 2
+					changeAmount = 2,
+					dialogueSelector = ".OxiFuelCells"
 				},
 				new AAddCard {
 					card = new TrashFumes(),
@@ -432,7 +434,8 @@ internal sealed class OxiFuelCellCard : Card, IBucketCard
 			],
 			_ => [
 				new AEnergy {
-					changeAmount = 2
+					changeAmount = 2,
+					dialogueSelector = ".OxiFuelCells"
 				},
 				new AAddCard {
 					card = new OxygenLeak(),
@@ -708,7 +711,8 @@ internal sealed class IllegalModsCard : Card, IBucketCard
 			new AStatus {
 				status = Status.autopilot,
 				statusAmount = 2,
-				targetPlayer = true
+				targetPlayer = true,
+				dialogueSelector = ".IllegalMods"
 			},
 			new AAddCard {
 				card = new PriceOfProgressCard(),
@@ -720,7 +724,8 @@ internal sealed class IllegalModsCard : Card, IBucketCard
 			new AStatus {
 				status = Status.autopilot,
 				statusAmount = 2,
-				targetPlayer = true
+				targetPlayer = true,
+				dialogueSelector = ".IllegalMods"
 			},
 			new AAddCard {
 				card = new ColorlessTrash(),
@@ -911,7 +916,8 @@ internal sealed class IngenuityCard : Card, IBucketCard
 	public override CardData GetData(State state) => new() {
 		cost = upgrade == Upgrade.B ? 3 : 1,
 		exhaust = true,
-		artTint = "ffffff"
+		artTint = "ffffff",
+		buoyant = upgrade == Upgrade.A
 	};
 
 	public override List<CardAction> GetActions(State s, Combat c) => upgrade switch {
@@ -920,10 +926,7 @@ internal sealed class IngenuityCard : Card, IBucketCard
 				status = ModEntry.Instance.IngenuityStatus.Status,
 				statusAmount = 1,
 				targetPlayer = true
-			},
-			new ADrawCard {
-				count = 2,
-			},
+			}
 		],
 		_ => [
 			new AStatus {

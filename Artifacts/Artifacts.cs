@@ -32,7 +32,7 @@ internal sealed class XRayVisionArtifact : Artifact, IBucketArtifact
 
 internal sealed class DoohickyArtifact : Artifact, IBucketArtifact
 {
-	bool active = true;
+	public bool active = true;
 
 	public static void Register(IModHelper helper)
 	{
@@ -115,7 +115,7 @@ internal sealed class WorkaroundArtifact : Artifact, IBucketArtifact
 
 internal sealed class RecyclingBinArtifact : Artifact, IBucketArtifact
 {
-	bool active = true;
+	public bool active = true;
 	internal static Spr ActiveSprite;
 	internal static Spr InactiveSprite;
 

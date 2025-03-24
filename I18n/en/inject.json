@@ -1,0 +1,23 @@
+{
+    "Soggins_Infinite": [
+        [ "Oh... Oh cool... This guy...", "bored" ]
+    ],
+    "Soggins_Missile_Shout_1": [
+        [ " I'm thinking we just leave, actually" ]
+    ],
+    "SogginsEscape_1": [
+        [ "I will just straight-up kill you. With my hands.", "annoyed" ]
+    ],
+    "DraculaTime": [
+        [ "Oh... hey there... Dracula...", "squint" ]
+    ],
+    "LoseCharacterCard": [
+        [ "WOAH, NELLY!" ]
+    ],
+    "GrandmaShop": [
+        [ "Oh, oh! Got any fishcakes?" ]
+    ],
+    "CrystallizedFriendEvent": [
+        [ "If you're gonna put me under none of you better touch my stuff.", "annoyed" ]
+    ]
+}

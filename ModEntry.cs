@@ -20,6 +20,7 @@ public sealed class ModEntry : SimpleMod {
     internal Harmony Harmony { get; }
 	internal IPhilipAPI? PhilipApi { get; }
 	internal ITyAndSashaApi? TyApi { get; }
+	internal IJohnsonApi? JohnsonApi { get; }
 	internal IKokoroApi KokoroApi { get; }
 	internal IMoreDifficultiesApi? MoreDifficultiesApi { get; } = null!;
 
@@ -40,14 +41,9 @@ public sealed class ModEntry : SimpleMod {
     internal IStatusEntry SteamCoverStatus { get; }
 	internal Status RedrawStatus { get; }
 
-    internal ISpriteEntry BucketPortrait { get; }
     internal ISpriteEntry BucketPortraitMini { get; }
     internal ISpriteEntry BucketFrame { get; }
     internal ISpriteEntry BucketCardBorder { get; }
-
-	internal List<ISpriteEntry> NeutralFrames { get; } = [];
-	internal List<ISpriteEntry> SquintFrames { get; } = [];
-	internal List<ISpriteEntry> GameoverFrames { get; } = [];
 
     internal ISpriteEntry ExhaustTrashFromHandIcon { get; }
 	internal ISpriteEntry TrashHandIcon { get; }
@@ -139,6 +135,7 @@ public sealed class ModEntry : SimpleMod {
 		MoreDifficultiesApi = helper.ModRegistry.GetApi<IMoreDifficultiesApi>("TheJazMaster.MoreDifficulties");
 		DuoArtifactsApi = helper.ModRegistry.GetApi<IDuoArtifactsApi>("Shockah.DuoArtifacts");
 		KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+		JohnsonApi = helper.ModRegistry.GetApi<IJohnsonApi>("Shockah.Johnson");
 		PhilipApi = helper.ModRegistry.GetApi<IPhilipAPI>("clay.PhilipTheMechanic");
 		TyApi = helper.ModRegistry.GetApi<ITyAndSashaApi>("TheJazMaster.TyAndSasha");
 
@@ -154,8 +151,18 @@ public sealed class ModEntry : SimpleMod {
 		RedrawStatusControllerPatches.Apply();
 		AStatusPatches.Apply();
 		AEndTurnPatches.Apply();
+		AAddCardPatches.Apply();
+		DrawThreePatches.Apply();
 		CustomTTGlossary.ApplyPatches(Harmony);
 		DynamicWidthCardAction.ApplyPatches(Harmony);
+
+		Helper.Events.OnModLoadPhaseFinished += (_, phase) => {
+			if (phase == ModLoadPhase.AfterDbInit) {
+				new CombatDialogue().Inject();
+				new EventDialogue().Inject();
+				new SwitchInjections().Inject();
+			}
+		};
 
 		AnyLocalizations = new JsonLocalizationProvider(
 			tokenExtractor: new SimpleLocalizationTokenExtractor(),
@@ -165,11 +172,6 @@ public sealed class ModEntry : SimpleMod {
 			new CurrentLocaleOrEnglishLocalizationProvider<IReadOnlyList<string>>(AnyLocalizations)
 		);
 
-		NeutralFrames = RegisterTalkSprites("Neutral");
-		SquintFrames = RegisterTalkSprites("Squint");
-		GameoverFrames = RegisterTalkSprites("Gameover");
-
-        BucketPortrait = NeutralFrames[0];
         BucketPortraitMini = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/Bucket_mini.png"));
 		BucketFrame = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/Panel.png"));
         BucketCardBorder = helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("Sprites/Character/CardBorder.png"));
@@ -249,7 +251,7 @@ public sealed class ModEntry : SimpleMod {
 			{
 				CharacterType = BucketDeck.Deck.Key(),
 				LoopTag = "neutral",
-				Frames = NeutralFrames.Select(entry => entry.Sprite).ToList()
+				Frames = RegisterAnimation(helper, "Neutral").Configuration.Frames
 			},
 			MiniAnimation = new()
 			{
@@ -268,32 +270,36 @@ public sealed class ModEntry : SimpleMod {
             }
         });
 
-		helper.Content.Characters.V2.RegisterCharacterAnimation("GameOver", new()
+		RegisterAnimation(helper, "Squint");
+		RegisterAnimation(helper, "Annoyed");
+		RegisterAnimation(helper, "Bored");
+		RegisterAnimation(helper, "Excited");
+		RegisterAnimation(helper, "Angry");
+		RegisterAnimation(helper, "Gameover");
+    }
+
+	private ICharacterAnimationEntryV2 RegisterAnimation(IModHelper helper, string name)
+    {
+        // var files = Instance.Package.PackageRoot.GetRelative($"Sprites/Character/{name}").AsDirectory?.GetFilesRecursively().Where(f => f.Name.EndsWith(".png"));
+		// List<Spr> sprites = [];
+		// if (files != null) {
+		// 	foreach (IFileInfo file in files) {
+		// 		sprites.Add(Instance.Helper.Content.Sprites.RegisterSprite(file).Sprite);
+		// 	}
+		// }
+		
+		return helper.Content.Characters.V2.RegisterCharacterAnimation(name, new()
 		{
 			CharacterType = BucketDeck.Deck.Key(),
-			LoopTag = "gameover",
-			Frames = GameoverFrames.Select(entry => entry.Sprite).ToList()
-		});
-		helper.Content.Characters.V2.RegisterCharacterAnimation("Squint", new()
-		{
-			CharacterType = BucketDeck.Deck.Key(),
-			LoopTag = "squint",
-			Frames = SquintFrames.Select(entry => entry.Sprite).ToList()
+			LoopTag = name.ToLower(),
+			Frames = Enumerable.Range(0, 10)
+				.Select(i => Instance.Package.PackageRoot.GetRelativeFile($"Sprites/Character/{name}/Bucket_{name}_{i}.png"))
+				.TakeWhile(f => f.Exists)
+				.Select(f => helper.Content.Sprites.RegisterSprite(f).Sprite)
+				.ToList()
 		});
     }
 
 	public override object? GetApi(IModManifest requestingMod)
 		=> new ApiImplementation();
-
-	private static List<ISpriteEntry> RegisterTalkSprites(string fileSuffix)
-    {
-        var files = Instance.Package.PackageRoot.GetRelative($"Sprites/Character/{fileSuffix}").AsDirectory?.GetFilesRecursively().Where(f => f.Name.EndsWith(".png"));
-		List<ISpriteEntry> sprites = [];
-		if (files != null) {
-			foreach (IFileInfo file in files) {
-				sprites.Add(Instance.Helper.Content.Sprites.RegisterSprite(file));
-			}
-		}
-		return sprites;
-    }
 }

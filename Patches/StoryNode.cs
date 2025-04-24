@@ -3,7 +3,7 @@ using HarmonyLib;
 using Nickel;
 using TheJazMaster.Bucket.Patches;
 
-namespace TheJazMaster.Bucket.Dialogue;
+namespace TheJazMaster.Bucket.Patches;
 
 internal class StoryNodePatches
 {

@@ -153,6 +153,8 @@ public sealed class ModEntry : SimpleMod {
 		AEndTurnPatches.Apply();
 		AAddCardPatches.Apply();
 		DrawThreePatches.Apply();
+		StoryNodePatches.Apply();
+		StoryVarsPatches.Apply();
 		CustomTTGlossary.ApplyPatches(Harmony);
 		DynamicWidthCardAction.ApplyPatches(Harmony);
 

@@ -227,10 +227,10 @@
     "CreatingTrash": {
         "Basic": [
             [ "Hope that doesn't come back to bite us later.", "squint" ],
-            [ "I'll just put that over there..." ],
+            [ "I'll just put that over there...", "squint" ],
             [ "(...I hope nobody noticed that...)", "squint" ],
-            [ "Ack, lemme just pull off these extra bits." ],
-            [ "Hope that wasn't too important." ]
+            [ "Ack, lemme just pull off these extra bits.", "squint" ],
+            [ "Hope that wasn't too important.", "squint" ]
         ]
     },
     "Wizbo": {
